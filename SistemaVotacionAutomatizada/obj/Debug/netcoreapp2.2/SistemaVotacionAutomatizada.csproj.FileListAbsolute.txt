@@ -40,12 +40,6 @@ C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomati
 C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Ciudadanos\Details.cshtml.g.cs
 C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Ciudadanos\Edit.cshtml.g.cs
 C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Ciudadanos\Index.cshtml.g.cs
-C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Create.cshtml.g.cs
-C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Delete.cshtml.g.cs
-C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Details.cshtml.g.cs
-C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Edit.cshtml.g.cs
-C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Index.cshtml.g.cs
-C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Partidos\Create.cshtml.g.cs
 C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Partidos\Delete.cshtml.g.cs
 C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Partidos\Details.cshtml.g.cs
 C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Partidos\Edit.cshtml.g.cs
@@ -57,3 +51,8 @@ C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomati
 C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\PuestoElectivos\Index.cshtml.g.cs
 C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Create.cshtml.g.cs
+C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Delete.cshtml.g.cs
+C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Details.cshtml.g.cs
+C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Edit.cshtml.g.cs
+C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Index.cshtml.g.cs

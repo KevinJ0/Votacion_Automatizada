@@ -15,7 +15,7 @@ namespace SistemaVotacionAutomatizada.Models
         [Required]
         public string Nombre { get; set; }
         [Required]
-        public DateTime? Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public bool? Estado { get; set; }
 
         public virtual ICollection<VotosElecciones> VotosElecciones { get; set; }

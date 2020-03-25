@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaVotacionAutomatizada.Models;
 
 namespace SistemaVotacionAutomatizada.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200324205400_configureFKCandidatos")]
+    partial class configureFKCandidatos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -267,12 +269,11 @@ namespace SistemaVotacionAutomatizada.Migrations
                     b.Property<bool?>("Estado")
                         .HasColumnName("estado");
 
-                    b.Property<DateTime?>("Fecha")
+                    b.Property<DateTime>("Fecha")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnName("fecha")
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("(getdate())");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -419,12 +420,12 @@ namespace SistemaVotacionAutomatizada.Migrations
                     b.HasOne("SistemaVotacionAutomatizada.Models.Partidos", "Partido")
                         .WithMany("Candidatos")
                         .HasForeignKey("PartidoId")
-                        .HasConstraintName("FK__Candidato__Parti__70DDC3D8");
+                        .HasConstraintName("FK__Candidato__Parti__70DDC3D8").OnDelete(DeleteBehavior.Cascade); 
 
                     b.HasOne("SistemaVotacionAutomatizada.Models.PuestoElectivos", "PuestoElectivos")
                         .WithMany("Candidatos")
                         .HasForeignKey("PuestoElectivosId")
-                        .HasConstraintName("FK__Candidato__Puest__71D1E811");
+                        .HasConstraintName("FK__Candidato__Puest__71D1E811").OnDelete(DeleteBehavior.Cascade); 
                 });
 
             modelBuilder.Entity("SistemaVotacionAutomatizada.Models.VotosElecciones", b =>
@@ -432,12 +433,12 @@ namespace SistemaVotacionAutomatizada.Migrations
                     b.HasOne("SistemaVotacionAutomatizada.Models.Candidatos", "Candidato")
                         .WithMany("VotosElecciones")
                         .HasForeignKey("CandidatoId")
-                        .HasConstraintName("FK__VotosElec__Candi__7F2BE32F");
+                        .HasConstraintName("FK__VotosElec__Candi__7F2BE32F").OnDelete(DeleteBehavior.Cascade); ;
 
                     b.HasOne("SistemaVotacionAutomatizada.Models.Ciudadanos", "Ciudadano")
                         .WithMany("VotosElecciones")
                         .HasForeignKey("CiudadanoId")
-                        .HasConstraintName("FK__VotosElec__Ciuda__00200768");
+                        .HasConstraintName("FK__VotosElec__Ciuda__00200768").OnDelete(DeleteBehavior.Cascade); ;
 
                     b.HasOne("SistemaVotacionAutomatizada.Models.Elecciones", "Eleccion")
                         .WithMany("VotosElecciones")
