@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\KevinJ\\source\\repos\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada.csproj": {}
+    "C:\\Users\\blask\\source\\repos\\ITLA\\C#Intermedio\\Votacion_Automatizada\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada.csproj": {}
   },
   "projects": {
-    "C:\\Users\\KevinJ\\source\\repos\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada.csproj": {
+    "C:\\Users\\blask\\source\\repos\\ITLA\\C#Intermedio\\Votacion_Automatizada\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\KevinJ\\source\\repos\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada.csproj",
+        "projectUniqueName": "C:\\Users\\blask\\source\\repos\\ITLA\\C#Intermedio\\Votacion_Automatizada\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada.csproj",
         "projectName": "SistemaVotacionAutomatizada",
-        "projectPath": "C:\\Users\\KevinJ\\source\\repos\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada.csproj",
-        "packagesPath": "C:\\Users\\KevinJ\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\KevinJ\\source\\repos\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada\\obj\\",
+        "projectPath": "C:\\Users\\blask\\source\\repos\\ITLA\\C#Intermedio\\Votacion_Automatizada\\SistemaVotacionAutomatizada\\SistemaVotacionAutomatizada.csproj",
+        "packagesPath": "C:\\Users\\blask\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\blask\\source\\repos\\ITLA\\C#Intermedio\\Votacion_Automatizada\\SistemaVotacionAutomatizada\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\KevinJ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\blask\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
