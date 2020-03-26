@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity;
-@inject SignInManager<IdentityUser> SignInManager;
+﻿@inject SignInManager<IdentityUser> SignInManager;
 
 <!DOCTYPE html>
 <html>
@@ -22,39 +21,33 @@
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
+
 <body>
     <header>
-
-
-        <div class="navbar navbar-dark bg-dark shadow-sm">
+        <nav class="navbar navbar-dark bg-primary border-bottom box-shadow mb-3">
             <div class="container d-flex justify-content-between">
-
-
-
                 <a asp-action="Index" asp-controller="Home" class="navbar-brand d-flex align-items-center">
-                    Home
+                    Sistema Votación Automatizada
                 </a>
-
-              
-                @if (SignInManager.IsSignedIn(User))
-                {
-
-                    <a asp-controller="Account" asp-action="Logout" class="navbar-brand d-flex align-items-end">
-                        Cerrar session
-                    </a>
-                    <span class="text-white"> @User.Identity.Name</span>
-                }
-                else
-                {
-                    <a asp-controller="Account" asp-action="Login" class="navbar-brand d-flex align-items-end">
-                        Login
-                    </a>
-                }
             </div>
-        </div>
+              
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a asp-controller="Account" asp-action="Logout" class="navbar-brand d-flex align-items-end">
+                    Cerrar session
+                </a>
+                <span class="text-white"> @User.Identity.Name</span>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login" class="navbar-brand d-flex align-items-end">
+                    Login
+                </a>
+            }
+        </nav>
     </header>
+
     <div class="container">
-        <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -62,7 +55,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - Votacion - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - Sistema Votación Automatizada
         </div>
     </footer>
 
