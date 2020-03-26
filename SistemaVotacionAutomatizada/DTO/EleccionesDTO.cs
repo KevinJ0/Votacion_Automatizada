@@ -1,16 +1,14 @@
-﻿using System;
+﻿using SistemaVotacionAutomatizada.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace SistemaVotacionAutomatizada.Models
+namespace SistemaVotacionAutomatizada.DTO
 {
-    public partial class Elecciones
+    public class EleccionesDTO
     {
-        public Elecciones()
-        {
-            VotosElecciones = new HashSet<VotosElecciones>();
-        }
-
         public int Id { get; set; }
 
         [Required]
@@ -18,7 +16,7 @@ namespace SistemaVotacionAutomatizada.Models
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime? Fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
         public bool Estado { get; set; }
 

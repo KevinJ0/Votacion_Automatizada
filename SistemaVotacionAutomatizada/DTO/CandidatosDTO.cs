@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace SistemaVotacionAutomatizada.DTO
 {
-    public class CadidatosDTO
+    public class CandidatosDTO
     {
 
-        public CadidatosDTO()
+        public CandidatosDTO()
         {
             VotosElecciones = new HashSet<VotosElecciones>();
         }
