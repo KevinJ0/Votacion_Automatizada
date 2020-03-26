@@ -16,6 +16,8 @@ namespace SistemaVotacionAutomatizada.DTO
         private void ConfigurePartidos() {
             CreateMap<PartidosDTO, Partidos>();
             CreateMap<Partidos, PartidosDTO>().ForMember(dest => dest.Logo, opt => opt.Ignore());
+            CreateMap<CandidatosDTO, Candidatos>();
+            CreateMap<Candidatos, CandidatosDTO>().ForMember(dest => dest.PhotoProfile, opt => opt.Ignore());
         }
 
     }

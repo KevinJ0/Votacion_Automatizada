@@ -10,8 +10,8 @@ using SistemaVotacionAutomatizada.Models;
 namespace SistemaVotacionAutomatizada.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200324205400_configureFKCandidatos")]
-    partial class configureFKCandidatos
+    [Migration("20200325213602_addDeleteBehaviorCascada")]
+    partial class addDeleteBehaviorCascada
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -200,7 +200,7 @@ namespace SistemaVotacionAutomatizada.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<bool?>("Estado")
+                    b.Property<bool>("Estado")
                         .HasColumnName("estado");
 
                     b.Property<string>("Nombre")
@@ -213,7 +213,6 @@ namespace SistemaVotacionAutomatizada.Migrations
                         .HasColumnName("PartidoID");
 
                     b.Property<string>("Photo")
-                        .IsRequired()
                         .HasColumnName("photo")
                         .HasMaxLength(250)
                         .IsUnicode(false);
@@ -246,7 +245,7 @@ namespace SistemaVotacionAutomatizada.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<bool?>("Estado")
+                    b.Property<bool>("Estado")
                         .HasColumnName("estado");
 
                     b.Property<string>("Nombre")
@@ -266,14 +265,14 @@ namespace SistemaVotacionAutomatizada.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool?>("Estado")
+                    b.Property<bool>("Estado")
                         .HasColumnName("estado");
 
                     b.Property<DateTime>("Fecha")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnName("fecha")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -297,7 +296,7 @@ namespace SistemaVotacionAutomatizada.Migrations
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
-                    b.Property<bool?>("Estado")
+                    b.Property<bool>("Estado")
                         .HasColumnName("estado");
 
                     b.Property<string>("Logo")
@@ -328,7 +327,7 @@ namespace SistemaVotacionAutomatizada.Migrations
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
-                    b.Property<bool?>("Estado")
+                    b.Property<bool>("Estado")
                         .HasColumnName("estado");
 
                     b.Property<string>("Nombre")
@@ -420,12 +419,12 @@ namespace SistemaVotacionAutomatizada.Migrations
                     b.HasOne("SistemaVotacionAutomatizada.Models.Partidos", "Partido")
                         .WithMany("Candidatos")
                         .HasForeignKey("PartidoId")
-                        .HasConstraintName("FK__Candidato__Parti__70DDC3D8").OnDelete(DeleteBehavior.Cascade); 
+                        .HasConstraintName("FK__Candidato__Parti__70DDC3D8");
 
                     b.HasOne("SistemaVotacionAutomatizada.Models.PuestoElectivos", "PuestoElectivos")
                         .WithMany("Candidatos")
                         .HasForeignKey("PuestoElectivosId")
-                        .HasConstraintName("FK__Candidato__Puest__71D1E811").OnDelete(DeleteBehavior.Cascade); 
+                        .HasConstraintName("FK__Candidato__Puest__71D1E811");
                 });
 
             modelBuilder.Entity("SistemaVotacionAutomatizada.Models.VotosElecciones", b =>
@@ -433,12 +432,12 @@ namespace SistemaVotacionAutomatizada.Migrations
                     b.HasOne("SistemaVotacionAutomatizada.Models.Candidatos", "Candidato")
                         .WithMany("VotosElecciones")
                         .HasForeignKey("CandidatoId")
-                        .HasConstraintName("FK__VotosElec__Candi__7F2BE32F").OnDelete(DeleteBehavior.Cascade); 
+                        .HasConstraintName("FK__VotosElec__Candi__7F2BE32F");
 
                     b.HasOne("SistemaVotacionAutomatizada.Models.Ciudadanos", "Ciudadano")
                         .WithMany("VotosElecciones")
                         .HasForeignKey("CiudadanoId")
-                        .HasConstraintName("FK__VotosElec__Ciuda__00200768").OnDelete(DeleteBehavior.Cascade); 
+                        .HasConstraintName("FK__VotosElec__Ciuda__00200768");
 
                     b.HasOne("SistemaVotacionAutomatizada.Models.Elecciones", "Eleccion")
                         .WithMany("VotosElecciones")

@@ -148,6 +148,7 @@ namespace SistemaVotacionAutomatizada.Controllers
                         }
 
                         if (filePath != null) dto.Logo.CopyTo(new FileStream(filePath, mode: FileMode.Create));
+                        partido.Logo = uniqueName;
                     }
 
 
@@ -155,7 +156,7 @@ namespace SistemaVotacionAutomatizada.Controllers
                     partido.Descripcion = dto.Descripcion;
                     partido.Estado = dto.Estado;
                     
-                    partido.Logo = uniqueName;
+                  
 
                     _context.Update(partido);
                     await _context.SaveChangesAsync();

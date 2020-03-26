@@ -16,7 +16,7 @@ namespace SistemaVotacionAutomatizada.Models
         public string Nombre { get; set; }
         [Required]
         public string Descripcion { get; set; }
-        public bool? Estado { get; set; }
+        public bool Estado { get; set; }
 
         public virtual ICollection<Candidatos> Candidatos { get; set; }
     }

@@ -198,7 +198,7 @@ namespace SistemaVotacionAutomatizada.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<bool?>("Estado")
+                    b.Property<bool>("Estado")
                         .HasColumnName("estado");
 
                     b.Property<string>("Nombre")
@@ -211,7 +211,6 @@ namespace SistemaVotacionAutomatizada.Migrations
                         .HasColumnName("PartidoID");
 
                     b.Property<string>("Photo")
-                        .IsRequired()
                         .HasColumnName("photo")
                         .HasMaxLength(250)
                         .IsUnicode(false);
@@ -244,7 +243,7 @@ namespace SistemaVotacionAutomatizada.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<bool?>("Estado")
+                    b.Property<bool>("Estado")
                         .HasColumnName("estado");
 
                     b.Property<string>("Nombre")
@@ -264,11 +263,10 @@ namespace SistemaVotacionAutomatizada.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool?>("Estado")
+                    b.Property<bool>("Estado")
                         .HasColumnName("estado");
 
-                    b.Property<DateTime?>("Fecha")
-                        .IsRequired()
+                    b.Property<DateTime>("Fecha")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("fecha")
                         .HasColumnType("datetime")
@@ -296,7 +294,7 @@ namespace SistemaVotacionAutomatizada.Migrations
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
-                    b.Property<bool?>("Estado")
+                    b.Property<bool>("Estado")
                         .HasColumnName("estado");
 
                     b.Property<string>("Logo")
@@ -327,7 +325,7 @@ namespace SistemaVotacionAutomatizada.Migrations
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
-                    b.Property<bool?>("Estado")
+                    b.Property<bool>("Estado")
                         .HasColumnName("estado");
 
                     b.Property<string>("Nombre")

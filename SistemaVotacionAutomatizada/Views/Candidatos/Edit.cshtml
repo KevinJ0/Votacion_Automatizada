@@ -1,4 +1,4 @@
-﻿@model SistemaVotacionAutomatizada.Models.Candidatos
+﻿@model SistemaVotacionAutomatizada.DTO.CandidatosDTO
 
 @{
     ViewData["Title"] = "Edit";
@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form enctype="multipart/form-data" asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -30,14 +30,19 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Photo" class="control-label"></label>
-                <input asp-for="Photo" class="form-control" />
-                <span asp-validation-for="Photo" class="text-danger"></span>
+                <p>Foto</p>
+                <div class="custom-file">
+                    <input asp-for="PhotoProfile" type="file" class="custom-file-input" id="customFile" accept="image/*">
+                    <label asp-for="PhotoProfile" class="custom-file-label" for="customFile">Escoge tu imagen</label>
+                    <span asp-validation-for="PhotoProfile" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" />
-                <span asp-validation-for="Estado" class="text-danger"></span>
+                <div class="custom-control custom-switch">
+                    <input asp-for="Estado" type="checkbox" class="custom-control-input">
+                    <label asp-for="Estado" class="custom-control-label"></label>
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="PartidoId" class="control-label"></label>

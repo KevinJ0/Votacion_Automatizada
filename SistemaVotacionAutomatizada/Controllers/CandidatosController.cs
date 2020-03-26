@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SistemaVotacionAutomatizada.DTO;
 using SistemaVotacionAutomatizada.Models;
 
 namespace SistemaVotacionAutomatizada.Controllers
@@ -12,9 +17,13 @@ namespace SistemaVotacionAutomatizada.Controllers
     public class CandidatosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IMapper _mapper;
 
-        public CandidatosController(ApplicationDbContext context)
+        public CandidatosController(ApplicationDbContext context, IMapper mapper, IHostingEnvironment hostingEnvironment)
         {
+            this.hostingEnvironment = hostingEnvironment;
+            this._mapper = mapper;
             _context = context;
         }
 
@@ -58,17 +67,31 @@ namespace SistemaVotacionAutomatizada.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Email,Photo,Estado,PartidoId,PuestoElectivosId")] Candidatos candidatos)
+        public async Task<IActionResult> Create(CandidatosDTO model)
         {
+          
+            var canditado = new Candidatos();
             if (ModelState.IsValid)
             {
-                _context.Add(candidatos);
+
+                string uniqueName = null;
+                if (model.PhotoProfile != null)
+                {
+                    var folderPath = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                    uniqueName = Guid.NewGuid().ToString() + "_" + model.PhotoProfile.FileName;
+                    var filePath = Path.Combine(folderPath, uniqueName);
+                    if (filePath != null) model.PhotoProfile.CopyTo(new FileStream(filePath, mode: FileMode.Create));
+                }
+
+
+                canditado = _mapper.Map<Candidatos>(model);
+                canditado.Photo = uniqueName;
+
+                _context.Add(canditado);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PartidoId"] = new SelectList(_context.Partidos, "Id", "Nombre", candidatos.PartidoId);
-            ViewData["PuestoElectivosId"] = new SelectList(_context.PuestoElectivos, "Id", "Nombre", candidatos.PuestoElectivosId);
-            return View(candidatos);
+            return View(model);
         }
 
         // GET: Candidatos/Edit/5
@@ -79,14 +102,13 @@ namespace SistemaVotacionAutomatizada.Controllers
                 return NotFound();
             }
 
-            var candidatos = await _context.Candidatos.FindAsync(id);
-            if (candidatos == null)
+            var candidato = await _context.Candidatos.FindAsync(id);
+            if (candidato == null)
             {
                 return NotFound();
             }
-            ViewData["PartidoId"] = new SelectList(_context.Partidos, "Id", "Nombre", candidatos.PartidoId);
-            ViewData["PuestoElectivosId"] = new SelectList(_context.PuestoElectivos, "Id", "Nombre", candidatos.PuestoElectivosId);
-            return View(candidatos);
+            var partidoDto = _mapper.Map<CandidatosDTO>(candidato);
+            return View(partidoDto);
         }
 
         // POST: Candidatos/Edit/5
@@ -94,9 +116,9 @@ namespace SistemaVotacionAutomatizada.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellido,Email,Photo,Estado,PartidoId,PuestoElectivosId")] Candidatos candidatos)
+        public async Task<IActionResult> Edit(int id, CandidatosDTO dto)
         {
-            if (id != candidatos.Id)
+            if (id != dto.Id)
             {
                 return NotFound();
             }
@@ -105,12 +127,44 @@ namespace SistemaVotacionAutomatizada.Controllers
             {
                 try
                 {
-                    _context.Update(candidatos);
+                    var candidato = await _context.Candidatos.FirstOrDefaultAsync(d => d.Id == dto.Id);
+
+                    string uniqueName = null;
+                    if (dto.PhotoProfile != null)
+                    {
+                        var folderPath = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                        uniqueName = Guid.NewGuid().ToString() + "_" + dto.PhotoProfile.FileName;
+                        var filePath = Path.Combine(folderPath, uniqueName);
+
+
+                        if (!string.IsNullOrEmpty(candidato.Photo))
+                        {
+                            var filePathDelete = Path.Combine(folderPath, candidato.Photo);
+
+                            if (System.IO.File.Exists(filePathDelete))
+                            {
+                                var fileInfo = new System.IO.FileInfo(filePathDelete);
+                                fileInfo.Delete();
+                            }
+                        }
+
+                        if (filePath != null) dto.PhotoProfile.CopyTo(new FileStream(filePath, mode: FileMode.Create));
+                        candidato.Photo = uniqueName;
+                    }
+
+                    candidato.PartidoId = dto.PartidoId;
+                    candidato.PuestoElectivosId = dto.PuestoElectivosId;
+                    candidato.Nombre = dto.Nombre;
+                    candidato.Apellido = dto.Apellido;
+                    candidato.Email = dto.Email;
+                    candidato.Estado = dto.Estado;
+
+                    _context.Update(candidato);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CandidatosExists(candidatos.Id))
+                    if (!CandidatosExists(dto.Id))
                     {
                         return NotFound();
                     }
@@ -121,9 +175,7 @@ namespace SistemaVotacionAutomatizada.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PartidoId"] = new SelectList(_context.Partidos, "Id", "Nombre", candidatos.PartidoId);
-            ViewData["PuestoElectivosId"] = new SelectList(_context.PuestoElectivos, "Id", "Nombre", candidatos.PuestoElectivosId);
-            return View(candidatos);
+            return View(dto);
         }
 
         // GET: Candidatos/Delete/5

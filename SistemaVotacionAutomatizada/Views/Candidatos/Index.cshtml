@@ -38,7 +38,9 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model) {   
+    var photoPath ="~/images/" + ((!string.IsNullOrEmpty(item.Photo) ? item.Photo : "nophoto.png" ));
+
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
@@ -50,7 +52,7 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Photo)
+                <img style="width: 200px;height: 200px" src="@photoPath" alt="Alternate Text" asp-append-version="true" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)

@@ -56,3 +56,4 @@ C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomati
 C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Details.cshtml.g.cs
 C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Edit.cshtml.g.cs
 C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Elecciones\Index.cshtml.g.cs
+C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\obj\Debug\netcoreapp2.2\Razor\Views\Partidos\Create.cshtml.g.cs

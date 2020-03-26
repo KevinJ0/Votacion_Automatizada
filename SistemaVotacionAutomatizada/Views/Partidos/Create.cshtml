@@ -1,4 +1,4 @@
-﻿@model SistemaVotacionAutomatizada.Models.PuestoElectivos
+﻿@model SistemaVotacionAutomatizada.DTO.PartidosDTO
 
 @{
     ViewData["Title"] = "Create";
@@ -7,11 +7,11 @@
 
 <h1>Create</h1>
 
-<h4>PuestoElectivos</h4>
+<h4>Partidos</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form enctype="multipart/form-data" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
@@ -22,6 +22,12 @@
                 <label asp-for="Descripcion" class="control-label"></label>
                 <input asp-for="Descripcion" class="form-control" />
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input asp-for="Logo" type="file" class="custom-file-input" id="customFile" accept="image/*">
+                    <label asp-for="Logo" class="custom-file-label" for="customFile">Escoge tu imagen</label>
+                </div>
             </div>
             <div class="custom-control custom-switch">
                 <input asp-for="Estado" type="checkbox" class="custom-control-input">
