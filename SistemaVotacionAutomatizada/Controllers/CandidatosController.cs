@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,8 @@ using SistemaVotacionAutomatizada.Models;
 
 namespace SistemaVotacionAutomatizada.Controllers
 {
+    [Authorize]
+
     public class CandidatosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -42,10 +45,7 @@ namespace SistemaVotacionAutomatizada.Controllers
                 return NotFound();
             }
 
-            var candidatos = await _context.Candidatos
-                .Include(c => c.Partido)
-                .Include(c => c.PuestoElectivos)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var candidatos = await _context.Candidatos.FirstOrDefaultAsync(m => m.Id == id);
             if (candidatos == null)
             {
                 return NotFound();
@@ -97,18 +97,21 @@ namespace SistemaVotacionAutomatizada.Controllers
         // GET: Candidatos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["PartidoId"] = new SelectList(_context.Partidos, "Id", "Nombre");
+            ViewData["PuestoElectivosId"] = new SelectList(_context.PuestoElectivos, "Id", "Nombre");
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var candidato = await _context.Candidatos.FindAsync(id);
+            var candidato = _context.Candidatos.Find(id);
             if (candidato == null)
             {
                 return NotFound();
             }
-            var partidoDto = _mapper.Map<CandidatosDTO>(candidato);
-            return View(partidoDto);
+            var candidatoDto = _mapper.Map<CandidatosDTO>(candidato);
+            return View(candidatoDto);
         }
 
         // POST: Candidatos/Edit/5

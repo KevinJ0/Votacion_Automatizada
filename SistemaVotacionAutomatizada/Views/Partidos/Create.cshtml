@@ -24,9 +24,11 @@
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <p>Foto</p>
                 <div class="custom-file">
                     <input asp-for="Logo" type="file" class="custom-file-input" id="customFile" accept="image/*">
                     <label asp-for="Logo" class="custom-file-label" for="customFile">Escoge tu imagen</label>
+                    <span asp-validation-for="Logo" class="text-danger"></span>
                 </div>
             </div>
             <div class="custom-control custom-switch">
