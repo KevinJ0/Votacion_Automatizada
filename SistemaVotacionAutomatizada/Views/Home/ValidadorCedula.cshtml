@@ -4,8 +4,8 @@
 
 <form class="form-inline">
     <div class="form-group mx-sm-3 mb-2">
-        <label for="Cedula" class="sr-only">Cédula</label>
-        <input type="text" class="form-control" id="Cedula" placeholder="Ingresar Cédula">
+        <label asp-for="Id" for="Cedula" class="sr-only">Cédula</label>
+        <input asp-for="Id" type="text" class="form-control" id="Cedula" placeholder="Ingresar Cédula">
         <span asp-validation-for="Id"></span>
     </div>
     <button type="submit" class="btn btn-primary mb-2">Validar</button>

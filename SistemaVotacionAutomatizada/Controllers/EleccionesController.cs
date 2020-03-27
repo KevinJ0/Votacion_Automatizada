@@ -23,6 +23,13 @@ namespace SistemaVotacionAutomatizada.Controllers
         // GET: Elecciones
         public async Task<IActionResult> Index()
         {
+            ViewBag.ProcesoElectroral = false;
+
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+            if (context == true) {
+                ViewBag.ProcesoElectroral = true;
+            }
+
             return View(await _context.Elecciones.ToListAsync());
         }
 
@@ -145,6 +152,41 @@ namespace SistemaVotacionAutomatizada.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> VerResultados(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var elecciones = await _context.Elecciones.FindAsync(id);
+            if (elecciones == null)
+            {
+                return NotFound();
+            }
+
+            return View(elecciones);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> FinalizarEleccion()
+        {
+
+            var query = (from a in _context.Elecciones
+                         select a).ToList();
+
+            foreach (var item in query)
+            {
+                item.Estado = false;
+            }
+
+            _context.UpdateRange(query);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+          
+        }
+
 
         private bool EleccionesExists(int id)
         {

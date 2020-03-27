@@ -29,8 +29,7 @@ namespace SistemaVotacionAutomatizada.Controllers
             this.hostingEnvironment = hostingEnvironment;
             this._mapper = mapper;
             _context = context;
-            this.hostingEnvironment = hostingEnvironment;
-        }
+         }
 
         // GET: Candidatos
         public async Task<IActionResult> Index()
