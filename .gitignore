@@ -9,7 +9,9 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+.vs/
+SistemaVotacionAutomatizada/obj/
+SistemaVotacionAutomatizada/wwwroot/images/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
