@@ -6,16 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SistemaVotacionAutomatizada.Models;
+using SistemaVotacionAutomatizada.DTO;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace SistemaVotacionAutomatizada.Controllers
 {
     public class CandidatosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHostingEnvironment hostingEnvironment;
 
-        public CandidatosController(ApplicationDbContext context)
+        public CandidatosController(ApplicationDbContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Candidatos
@@ -54,21 +59,40 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // POST: Candidatos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Email,Photo,Estado,PartidoId,PuestoElectivosId")] Candidatos candidatos)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Email,Photo,Estado,PartidoId,PuestoElectivosId")] CandidatosDTO candidatosDTO)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(candidatos);
+                string uniqueFileName = null;
+                if(candidatosDTO.IFormFile != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + candidatosDTO.IFormFile.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    candidatosDTO.IFormFile.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+
+                Candidatos newCandidato = new Candidatos
+                {
+                    //Id = candidatosDTO.PartidoId,
+                    Nombre = candidatosDTO.Nombre,
+                    Apellido = candidatosDTO.Apellido,
+                    Email = candidatosDTO.Email,
+                    Photo = uniqueFileName,
+                    Estado = candidatosDTO.Estado,
+                    PartidoId = candidatosDTO.PartidoId,
+                    PuestoElectivosId = candidatosDTO.PuestoElectivosId
+                };
+
+                _context.Add(candidatosDTO);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", new { id = newCandidato.Id});
             }
-            ViewData["PartidoId"] = new SelectList(_context.Partidos, "Id", "Nombre", candidatos.PartidoId);
-            ViewData["PuestoElectivosId"] = new SelectList(_context.PuestoElectivos, "Id", "Nombre", candidatos.PuestoElectivosId);
-            return View(candidatos);
+            ViewData["PartidoId"] = new SelectList(_context.Partidos, "Id", "Nombre", candidatosDTO.PartidoId);
+            ViewData["PuestoElectivosId"] = new SelectList(_context.PuestoElectivos, "Id", "Nombre", candidatosDTO.PuestoElectivosId);
+            return View(candidatosDTO);
         }
 
         // GET: Candidatos/Edit/5

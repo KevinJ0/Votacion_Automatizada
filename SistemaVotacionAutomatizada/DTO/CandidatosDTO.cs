@@ -17,17 +17,24 @@ namespace SistemaVotacionAutomatizada.DTO
             VotosElecciones = new HashSet<VotosElecciones>();
         }
 
-        
+        [Required]
         public string Nombre { get; set; }
+
         [Required]
         public string Apellido { get; set; }
+
         [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        public int PartidoId { get; set; }
+
+        public int PuestoElectivosId { get; set; }
+
+        public bool Estado { get; set; }
+
         [Required]
-        public string IFormFile { get; set; }
-        public bool? Estado { get; set; }
-        public int? PartidoId { get; set; }
-        public int? PuestoElectivosId { get; set; }
+        public IFormFile IFormFile { get; set; }
 
         public virtual Partidos Partido { get; set; }
         public virtual PuestoElectivos PuestoElectivos { get; set; }

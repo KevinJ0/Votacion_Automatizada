@@ -1,4 +1,4 @@
-﻿@model SistemaVotacionAutomatizada.Models.Candidatos
+﻿@model SistemaVotacionAutomatizada.DTO.CandidatosDTO
 
 @{
     ViewData["Title"] = "Create";
@@ -8,7 +8,7 @@
 <h1>Creación Candidatos</h1>
 <hr />
 
-<form asp-action="Create">
+<form enctype="multipart/form-data" asp-action="Create">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row">
         <div class="col">
@@ -39,16 +39,22 @@
         </div>
 
         <div class="custom-control custom-switch">
-            <input asp-for="Estado" type="checkbox" class="custom-control-input" checked >
+            <input asp-for="Estado" type="checkbox" class="custom-control-input" checked>
             <label asp-for="Estado" class="custom-control-label"></label>
             <span asp-validation-for="Estado" class="text-danger"></span>
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="Photo" class="control-label"></label>
-        <input asp-for="Photo" class="form-control" />
-        <span asp-validation-for="Photo" class="text-danger"></span>
+        <label asp-for="IFormFile" class="control-label">Archivo foto:</label>
+        <div class="col">
+            <div class="custom-file">
+                <input asp-for="IFormFile" class="form-control custom-file-input" />
+                <label class="custom-file-label">Escoger archivo</label>
+                <span asp-validation-for="IFormFile" class="text-danger"></span>
+            </div>
+        </div>
+
     </div>
 
     <div style="margin-top:1rem;" class="form-group">
@@ -58,5 +64,14 @@
 </form>
 
 @section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            });
+        });
+    </script>
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
