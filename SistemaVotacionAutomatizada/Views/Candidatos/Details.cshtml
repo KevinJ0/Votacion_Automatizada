@@ -3,59 +3,32 @@
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var photoPath = "~/images/" + (Model.Photo ?? "nophoto.png");
 }
 
-<h1>Details</h1>
+<h1>Detalles Candidatos</h1>
+<hr/>
+
+<div class="card mb-3" style="max-width:540px">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="@photoPath" asp-append-version="true" class="card-img" />
+        </div>
+
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(model => model.Nombre) @Html.DisplayFor(model => model.Apellido)</h5>
+                <p class="card-text">Email: @Html.DisplayFor(model => model.Email)</p>
+                <p class="card-text">Partido: @Html.DisplayFor(model => model.Partido.Nombre)</p>
+                <p class="card-text">Puesto al que Aspira: @Html.DisplayFor(model => model.PuestoElectivos.Nombre)</p>
+                <p class="card-text">Activo: @Html.DisplayFor(model => model.Estado)</p>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 <div>
-    <h4>Candidatos</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Apellido)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Apellido)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Photo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Partido)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Partido.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PuestoElectivos)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PuestoElectivos.Nombre)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Volver a Listado</a>
 </div>

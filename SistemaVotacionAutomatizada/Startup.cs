@@ -15,7 +15,6 @@ using Microsoft.Extensions.DependencyInjection;
 using SistemaVotacionAutomatizada.Models;
 using WebApiPaises.Models;
 using AutoMapper;
-
 using System.Reflection;
 using SistemaVotacionAutomatizada.DTO;
 
@@ -33,23 +32,24 @@ namespace SistemaVotacionAutomatizada
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-          .AddEntityFrameworkStores<ApplicationDbContext>()
-          .AddDefaultTokenProviders();
+            //Pablo: Desactive todos los requisitos de claves por el momento
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 5;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
+
+            }).AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddDistributedMemoryCache();
             services.AddSession(option => { option.IdleTimeout = TimeSpan.FromHours(2); });
-
             services.AddAutoMapper(typeof(AutoMapperConfiguration).GetTypeInfo().Assembly);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -71,14 +71,13 @@ namespace SistemaVotacionAutomatizada
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=partidos}/{action=index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
             
         }

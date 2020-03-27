@@ -12,9 +12,12 @@ namespace SistemaVotacionAutomatizada.Models
         }
 
         public int Id { get; set; }
+
         [Required]
         public string Nombre { get; set; }
+
         [Required]
+        [DataType(DataType.Date)]
         public DateTime Fecha { get; set; }
         public bool Estado { get; set; }
 

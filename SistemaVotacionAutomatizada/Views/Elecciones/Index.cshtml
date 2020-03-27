@@ -5,13 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Procesos Elecotrales</h1>
 
+<!--Pablo: agregar condicionante para esconder boton-->
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Nueva Elección</a>
 </p>
-<table class="table">
-    <thead>
+
+<table class="table table-hover">
+    <thead class="table-primary">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
@@ -20,29 +22,32 @@
                 @Html.DisplayNameFor(model => model.Fecha)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Estado)
+                Activo
             </th>
-            <th></th>
         </tr>
     </thead>
+
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Fecha.GetDateTimeFormats('D')[0])
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
-            <td>
+            <!--<td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            </td>-->
         </tr>
-}
+        }
     </tbody>
 </table>

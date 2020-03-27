@@ -24,10 +24,12 @@ namespace SistemaVotacionAutomatizada.Controllers
         private readonly IMapper _mapper;
 
         public CandidatosController(ApplicationDbContext context, IMapper mapper, IHostingEnvironment hostingEnvironment)
+
         {
             this.hostingEnvironment = hostingEnvironment;
             this._mapper = mapper;
             _context = context;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Candidatos
@@ -63,17 +65,13 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // POST: Candidatos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CandidatosDTO model)
         {
-          
             var canditado = new Candidatos();
             if (ModelState.IsValid)
             {
-
                 string uniqueName = null;
                 if (model.PhotoProfile != null)
                 {
@@ -83,7 +81,6 @@ namespace SistemaVotacionAutomatizada.Controllers
                     if (filePath != null) model.PhotoProfile.CopyTo(new FileStream(filePath, mode: FileMode.Create));
                 }
 
-
                 canditado = _mapper.Map<Candidatos>(model);
                 canditado.Photo = uniqueName;
 
@@ -92,6 +89,7 @@ namespace SistemaVotacionAutomatizada.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
+
         }
 
         // GET: Candidatos/Edit/5
@@ -144,7 +142,7 @@ namespace SistemaVotacionAutomatizada.Controllers
                         {
                             var filePathDelete = Path.Combine(folderPath, candidato.Photo);
 
-                            if (System.IO.File.Exists(filePathDelete))
+                            if (System.IO.File.Exists(filePathDelete) && filePathDelete != filePath)
                             {
                                 var fileInfo = new System.IO.FileInfo(filePathDelete);
                                 fileInfo.Delete();

@@ -83,7 +83,6 @@ namespace SistemaVotacionAutomatizada.Controllers
 
 
                 partido = _mapper.Map<Partidos>(model);
-
                 partido.Logo = uniqueName;
 
                 _context.Add(partido);
