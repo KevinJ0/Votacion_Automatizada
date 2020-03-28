@@ -19,6 +19,5 @@ namespace SistemaVotacionAutomatizada.Models
         public virtual Ciudadanos Ciudadano { get; set; }
         public virtual Elecciones Eleccion { get; set; }
 
-
-    }
+}
 }

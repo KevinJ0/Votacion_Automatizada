@@ -32,7 +32,10 @@ namespace SistemaVotacionAutomatizada.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            if (signInManager.IsSignedIn(User)) return RedirectToAction("MenuAdmin", "Home");
+
+            return View(); 
+            
         }
 
         [HttpPost]
@@ -45,7 +48,7 @@ namespace SistemaVotacionAutomatizada.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Elecciones");
+                    return RedirectToAction("MenuAdmin", "Home");
                 }
 
                  ModelState.AddModelError("ErrorInicioSeccion","Usuario o contraseña incorrectos");

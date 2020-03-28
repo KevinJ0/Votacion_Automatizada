@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<SistemaVotacionAutomatizada.Models.VotosElecciones>
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Resultados";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<h1>Resultados de elecciones</h1>
 
 <h4>Fecha de elecciones @ViewBag.FechaEleccion</h4>
 <hr />
@@ -27,30 +27,36 @@
                 <td class="card">
                     <div class="card-header">
                         <a class="card-link" data-toggle="collapse" href="#@Nombre">
-                            @Html.DisplayFor(modelItem => item.Nombre)
+                            <h5>@Html.DisplayFor(modelItem => item.Nombre)</h5>
                         </a>
                     </div>
                     <div id="@Nombre" class="collapse show" data-parent="#accordion">
                         <div class="card-body">
                             @foreach (var itemCand in Model.Select(x => x.Candidato).Where(x => x.PuestoElectivosId == item.Id).OrderByDescending(x => x.VotosElecciones.Count).Distinct())
                             {
-
                                 int cantVotos = @Model.Where(x => x.CandidatoId == itemCand.Id).Count();
                                 int cantVotosTotales = @Model.Where(x => x.Candidato.PuestoElectivosId == itemCand.PuestoElectivosId).Count();
-                                float barFillValue = ((cantVotos * 100) / cantVotosTotales);
-
+                                float barFillValue = ((cantVotos * 100) / (float)cantVotosTotales);
+                            <p>
+                                <strong> @Html.DisplayFor(modelItem => itemCand.Nombre) @Html.DisplayFor(modelItem => itemCand.Apellido)</strong>
+                            </p>
                                 <p>
-                                    @Html.DisplayFor(modelItem => itemCand.Apellido)
-                                </p>
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" style="width: @barFillValue%"></div>
-                                </div>
-                                <p class="">
-                                    Votos: @cantVotos
-                                </p>
-                                <hr />
-                                
-                            }
+                                    Partido: @foreach (var itemF in ViewBag.ListPartidos)
+                                    {
+                                        if (itemF.Id == itemCand.PartidoId)
+                                        {
+                                       @itemF.Nombre
+                                    }
+                                }
+                                    </p>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" style="width: @barFillValue%">%@barFillValue</div>
+                                    </div>
+                                    <p class="">
+                                        Votos: @cantVotos
+                                    </p>
+                                    <hr />
+                                }
                         </div>
                     </div>
                 </td>

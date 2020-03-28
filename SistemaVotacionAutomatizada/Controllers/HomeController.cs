@@ -6,13 +6,29 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SistemaVotacionAutomatizada.Models;
 using SistemaVotacionAutomatizada.DTO;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace SistemaVotacionAutomatizada.Controllers
 {
+
     public class HomeController : Controller
     {
+
+
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
+
+        public HomeController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        {
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+
+        }
         public IActionResult Index()
         {
+            if (signInManager.IsSignedIn(User)) return RedirectToAction("MenuAdmin", "Home");
+
             return View();
         }
 
@@ -24,6 +40,8 @@ namespace SistemaVotacionAutomatizada.Controllers
         [HttpGet]
         public IActionResult ValidadorCedula()
         {
+            if (signInManager.IsSignedIn(User)) return RedirectToAction("MenuAdmin", "Home");
+
             return View();
         }
 
