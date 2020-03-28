@@ -14,10 +14,6 @@ namespace SistemaVotacionAutomatizada.Controllers
 
     public class HomeController : Controller
     {
-
-<<<<<<< HEAD
-=======
-
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
 
@@ -27,7 +23,7 @@ namespace SistemaVotacionAutomatizada.Controllers
             this.signInManager = signInManager;
 
         }
->>>>>>> master
+
         public IActionResult Index()
         {
             if (signInManager.IsSignedIn(User)) return RedirectToAction("MenuAdmin", "Home");
