@@ -161,11 +161,19 @@ namespace SistemaVotacionAutomatizada.Controllers
             }
 
             var elecciones = await _context.Elecciones.FindAsync(id);
+
             if (elecciones == null)
             {
                 return NotFound();
             }
 
+            if(elecciones.Estado == true)
+            {
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewBag.ListPartidos = _context.Partidos.ToList();
             ViewBag.FechaEleccion = elecciones.Fecha.GetDateTimeFormats('D')[0];
             var applicationDbContext =  _context.VotosElecciones.Where(x=> x.EleccionId == id).Include(v => v.Candidato.PuestoElectivos);
            
