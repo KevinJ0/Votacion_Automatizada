@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SistemaVotacionAutomatizada.Models.VotosElecciones>
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Elecciones @ViewBag.FechaEleccion</h4>
+<hr />
+<table class="table table-hover">
+    <thead class="table-primary">
+        <tr>
+            <th>
+                Puestos Electivos
+            </th>
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @{string NombrePuesto = "Collap"; int count = 0;}
+        @foreach (var item in Model.Select(x => x.Candidato.PuestoElectivos).ToList().Distinct())
+        {
+            var Nombre = NombrePuesto + count;
+            <tr id="accordion">
+                <td class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#@Nombre">
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </a>
+                    </div>
+                    <div id="@Nombre" class="collapse show" data-parent="#accordion">
+                        <div class="card-body">
+                            @foreach (var itemCand in Model.Select(x => x.Candidato).Where(x => x.PuestoElectivosId == item.Id).Distinct())
+                            {
+                                
+                                    int cantVotos = @Model.Where(x => x.CandidatoId == itemCand.Id).Count();
+                                    int cantVotosTotales = @Model.Where(x => x.Candidato.PuestoElectivosId == itemCand.PuestoElectivosId).Count();
+                                    float barFullValue = ((cantVotos *  100) / cantVotosTotales );
+                                         
+                                <p>
+                                    @Html.DisplayFor(modelItem => itemCand.Apellido)
+                                </p>
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" style="width: @barFullValue%"></div>
+                                </div>
+                                <p class="">
+                                    Votos: @cantVotos
+                                </p>
+                                <hr />
+                            }
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            count++;
+        }
+
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

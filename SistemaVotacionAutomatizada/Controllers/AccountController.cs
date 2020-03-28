@@ -45,7 +45,7 @@ namespace SistemaVotacionAutomatizada.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Partidos");
+                    return RedirectToAction("Index", "Elecciones");
                 }
 
                  ModelState.AddModelError("ErrorInicioSeccion","Usuario o contraseña incorrectos");
