@@ -20,8 +20,8 @@ namespace SistemaVotacionAutomatizada.Models
         public string Email { get; set; }
         public string Photo { get; set; }
         public bool Estado { get; set; }
-        public int? PartidoId { get; set; }
-        public int? PuestoElectivosId { get; set; }
+        public int PartidoId { get; set; }
+        public int PuestoElectivosId { get; set; }
 
         public virtual Partidos Partido { get; set; }
         public virtual PuestoElectivos PuestoElectivos { get; set; }

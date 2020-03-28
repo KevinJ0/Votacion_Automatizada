@@ -1,0 +1,30 @@
+﻿@model IEnumerable<SistemaVotacionAutomatizada.Models.PuestoElectivos>
+
+@{ 
+    ViewBag.Title = "Menú Ciudadano";
+}
+
+<h1>Menú Ciudadano</h1>
+<hr />
+
+<div class="row row-cols-1 row-cols-md-3">
+    @foreach (var item in Model)
+    {
+        if (item.Estado == true)
+        {
+            <div class="col mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nombre</h5>
+                        <p class="card-text">@item.Descripcion</p>
+                    </div>
+               
+                    <div class="card-footer">
+                        <a href="@Url.Action("EleccionCandidato","Candidatos",new { item.Id})" class="btn btn-primary">Seleccionar</a>
+                    </div>
+                </div>
+            </div>
+
+        }
+    }
+</div>

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SistemaVotacionAutomatizada.Models.Candidatos>
+@using System.IO
+
+@{
+    ViewBag.Title = "Selección Candidato";
+    var photoPath = "~/images/";
+}
+
+<h1>Selección Candidato</h1>
+<hr />
+
+<div class="row row-cols-1 row-cols-md-3">
+    @foreach (var item in Model)
+    {
+        if (item.Estado == true)
+        {
+            <div class="col mb-4">
+                <div class="card" id="candidato">
+                    <img src="@(photoPath + item.Photo)" asp-append-version="true" class="card-img-top" style="height:200px;width:auto;"/>
+
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nombre @item.Apellido</h5>
+                        <p class="card-text">@item.Partido</p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<div class="card" style="width:20rem;display:none;" id="votebtn">
+    <a href="@Url.Action("RegistroVoto", "VotosElecciones")" class="btn btn-primary">Votar</a>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#candidato").click(function () {
+                $("#votebtn").show();
+            });
+        });
+    </script>
+}

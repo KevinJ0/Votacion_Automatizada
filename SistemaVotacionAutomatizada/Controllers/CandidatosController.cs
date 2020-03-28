@@ -15,7 +15,7 @@ using SistemaVotacionAutomatizada.Models;
 
 namespace SistemaVotacionAutomatizada.Controllers
 {
-    [Authorize]
+    //[Authorize]
 
     public class CandidatosController : Controller
     {
@@ -30,6 +30,14 @@ namespace SistemaVotacionAutomatizada.Controllers
             this._mapper = mapper;
             _context = context;
             this.hostingEnvironment = hostingEnvironment;
+        }
+
+        //Pablo: Menu Candidatos
+        public async Task<IActionResult> EleccionCandidato(int? id)
+        {
+            var candidatos = await _context.Candidatos.Where(x => x.PuestoElectivosId == id).ToListAsync();
+
+            return View(candidatos);
         }
 
         // GET: Candidatos
@@ -103,7 +111,7 @@ namespace SistemaVotacionAutomatizada.Controllers
                 return NotFound();
             }
 
-            var candidato = _context.Candidatos.Find(id);
+            var candidato = await _context.Candidatos.FindAsync(id);
             if (candidato == null)
             {
                 return NotFound();

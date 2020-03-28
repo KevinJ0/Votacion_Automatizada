@@ -28,9 +28,15 @@ namespace SistemaVotacionAutomatizada.DTO
         public string Email { get; set; }
 
         public IFormFile PhotoProfile { get; set; }
+
+        [Required]
         public bool Estado { get; set; }
-        public int? PartidoId { get; set; }
-        public int? PuestoElectivosId { get; set; }
+
+        [Required]
+        public int PartidoId { get; set; }
+
+        [Required]
+        public int PuestoElectivosId { get; set; }
 
 
         public virtual Partidos Partido { get; set; }
