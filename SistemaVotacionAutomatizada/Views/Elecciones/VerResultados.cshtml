@@ -7,7 +7,7 @@
 
 <h1>Edit</h1>
 
-<h4>Elecciones @ViewBag.FechaEleccion</h4>
+<h4>Fecha de elecciones @ViewBag.FechaEleccion</h4>
 <hr />
 <table class="table table-hover">
     <thead class="table-primary">
@@ -15,8 +15,6 @@
             <th>
                 Puestos Electivos
             </th>
-
-
         </tr>
     </thead>
 
@@ -34,23 +32,24 @@
                     </div>
                     <div id="@Nombre" class="collapse show" data-parent="#accordion">
                         <div class="card-body">
-                            @foreach (var itemCand in Model.Select(x => x.Candidato).Where(x => x.PuestoElectivosId == item.Id).Distinct())
+                            @foreach (var itemCand in Model.Select(x => x.Candidato).Where(x => x.PuestoElectivosId == item.Id).OrderByDescending(x => x.VotosElecciones.Count).Distinct())
                             {
-                                
-                                    int cantVotos = @Model.Where(x => x.CandidatoId == itemCand.Id).Count();
-                                    int cantVotosTotales = @Model.Where(x => x.Candidato.PuestoElectivosId == itemCand.PuestoElectivosId).Count();
-                                    float barFullValue = ((cantVotos *  100) / cantVotosTotales );
-                                         
+
+                                int cantVotos = @Model.Where(x => x.CandidatoId == itemCand.Id).Count();
+                                int cantVotosTotales = @Model.Where(x => x.Candidato.PuestoElectivosId == itemCand.PuestoElectivosId).Count();
+                                float barFillValue = ((cantVotos * 100) / cantVotosTotales);
+
                                 <p>
                                     @Html.DisplayFor(modelItem => itemCand.Apellido)
                                 </p>
                                 <div class="progress">
-                                    <div class="progress-bar bg-warning" style="width: @barFullValue%"></div>
+                                    <div class="progress-bar bg-warning" style="width: @barFillValue%"></div>
                                 </div>
                                 <p class="">
                                     Votos: @cantVotos
                                 </p>
                                 <hr />
+                                
                             }
                         </div>
                     </div>
