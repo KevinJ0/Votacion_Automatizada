@@ -184,7 +184,7 @@ namespace SistemaVotacionAutomatizada.Models
                 entity.HasOne(d => d.Eleccion)
                     .WithMany(p => p.VotosElecciones)
                     .HasForeignKey(d => d.EleccionId)
-                    .HasConstraintName("FK__VotosElec__Elecc__7E37BEF6");
+                    .HasConstraintName("FK__VotosElec__Elecc__7E37BEF6").OnDelete(DeleteBehavior.Cascade);
             });
         }
     }

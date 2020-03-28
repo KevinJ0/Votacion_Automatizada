@@ -5,6 +5,11 @@ namespace SistemaVotacionAutomatizada.Models
 {
     public partial class VotosElecciones
     {
+
+        public VotosElecciones() {
+
+         
+        }
         public int Id { get; set; }
         public int? EleccionId { get; set; }
         public int? CandidatoId { get; set; }
@@ -13,5 +18,7 @@ namespace SistemaVotacionAutomatizada.Models
         public virtual Candidatos Candidato { get; set; }
         public virtual Ciudadanos Ciudadano { get; set; }
         public virtual Elecciones Eleccion { get; set; }
+
+
     }
 }

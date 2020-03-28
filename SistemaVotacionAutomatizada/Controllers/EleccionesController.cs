@@ -152,6 +152,7 @@ namespace SistemaVotacionAutomatizada.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         public async Task<IActionResult> VerResultados(int? id)
         {
             if (id == null)
@@ -165,7 +166,12 @@ namespace SistemaVotacionAutomatizada.Controllers
                 return NotFound();
             }
 
-            return View(elecciones);
+            ViewBag.FechaEleccion = elecciones.Fecha.GetDateTimeFormats('D')[0];
+            var applicationDbContext =  _context.VotosElecciones.Where(x=> x.EleccionId == id).Include(v => v.Candidato.PuestoElectivos);
+           
+            return View(await applicationDbContext.ToListAsync());
+
+            
         }
 
         [HttpPost]
