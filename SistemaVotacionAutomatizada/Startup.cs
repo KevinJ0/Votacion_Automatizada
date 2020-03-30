@@ -17,6 +17,7 @@ using WebApiPaises.Models;
 using AutoMapper;
 using System.Reflection;
 using SistemaVotacionAutomatizada.DTO;
+using SistemaVotacionAutomatizada.Helpers;
 
 namespace SistemaVotacionAutomatizada
 {
@@ -34,6 +35,8 @@ namespace SistemaVotacionAutomatizada
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
+            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
 
             //Pablo: Desactive todos los requisitos de claves por el momento
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
@@ -51,7 +54,8 @@ namespace SistemaVotacionAutomatizada
             services.AddDistributedMemoryCache();
             services.AddSession(option => { option.IdleTimeout = TimeSpan.FromHours(2); });
             services.AddAutoMapper(typeof(AutoMapperConfiguration).GetTypeInfo().Assembly);
-
+            services.AddSingleton(emailConfig);
+            services.AddScoped<IEmailSender, EmailSenderGmail>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

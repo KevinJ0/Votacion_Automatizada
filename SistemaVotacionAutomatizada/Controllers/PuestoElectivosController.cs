@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SistemaVotacionAutomatizada.Helpers;
 using SistemaVotacionAutomatizada.Models;
 
 namespace SistemaVotacionAutomatizada.Controllers
@@ -13,10 +14,12 @@ namespace SistemaVotacionAutomatizada.Controllers
     public class PuestoElectivosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IEmailSender _emailsender;
 
-        public PuestoElectivosController(ApplicationDbContext context)
+        public PuestoElectivosController(ApplicationDbContext context, IEmailSender emailSender)
         {
             _context = context;
+            _emailsender = emailSender;
         }
 
         //Pablo: menu de Ciudadanos; igual a index...
@@ -24,6 +27,16 @@ namespace SistemaVotacionAutomatizada.Controllers
         public async Task<IActionResult> MenuVotante()
         {
             return View(await _context.PuestoElectivos.ToListAsync());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MenuVotante(string candidatos)
+        {
+            var message = new Message(new string[] { "insertar correo votante" }, "Selección Candidatos", "Insertar contenido correo");
+
+            await _emailsender.SendEmailAsync(message);
+
+            return View("Index");
         }
 
         // GET: PuestoElectivos
