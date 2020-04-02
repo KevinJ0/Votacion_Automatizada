@@ -1,34 +1,31 @@
 ﻿@model IEnumerable<SistemaVotacionAutomatizada.Models.Partidos>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Partidos Políticos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Partidos Políticos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Crear Partido</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead class="table-primary">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
+            <th>Descripción</th>
             <th>
                 @Html.DisplayNameFor(model => model.Logo)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
+            <th>Activo</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
+
 @foreach (var item in Model) {
     var photoPath ="~/images/" + ((!string.IsNullOrEmpty(item.Logo) ? item.Logo : "nophoto.png" ));
         <tr>
@@ -45,9 +42,9 @@
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <!--<a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |-->
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>
         </tr>
 }

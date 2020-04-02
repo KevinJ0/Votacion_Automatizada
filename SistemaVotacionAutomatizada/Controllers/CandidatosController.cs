@@ -92,7 +92,7 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // GET: Candidatos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             ViewData["PartidoId"] = new SelectList(_context.Partidos, "Id", "Nombre");
             ViewData["PuestoElectivosId"] = new SelectList(_context.PuestoElectivos, "Id", "Nombre");
