@@ -1,68 +1,73 @@
 ﻿@model SistemaVotacionAutomatizada.DTO.CandidatosDTO
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Candidato";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
-
-<h4>Candidatos</h4>
+<h1>Editar Candidato</h1>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form enctype="multipart/form-data" asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Nombre" class="control-label"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Apellido" class="control-label"></label>
+                    <input asp-for="Apellido" class="form-control" />
+                    <span asp-validation-for="Apellido" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Apellido" class="control-label"></label>
-                <input asp-for="Apellido" class="form-control" />
-                <span asp-validation-for="Apellido" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="PartidoId" class="control-label">Partido</label>
+                    <select asp-for="PartidoId" class="form-control" asp-items="ViewBag.PartidoId"></select>
+                    <span asp-validation-for="PartidoId" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="PuestoElectivosId" class="control-label">Puesto Electivo</label>
+                    <select asp-for="PuestoElectivosId" class="form-control" asp-items="ViewBag.PuestoElectivosId"></select>
+                    <span asp-validation-for="PuestoElectivosId" class="text-danger"></span>
+                </div>
+            </div>
+
             <div class="form-group">
                 <p>Foto</p>
                 <div class="custom-file">
                     <input asp-for="PhotoProfile" type="file" class="custom-file-input" id="customFile" accept="image/*">
-                    <label asp-for="PhotoProfile" class="custom-file-label" for="customFile">Escoge tu imagen</label>
+                    <label asp-for="PhotoProfile" class="custom-file-label" for="customFile">Escoge tu imágen</label>
                     <span asp-validation-for="PhotoProfile" class="text-danger"></span>
                 </div>
             </div>
+
             <div class="form-group">
                 <div class="custom-control custom-switch">
                     <input asp-for="Estado" type="checkbox" class="custom-control-input">
-                    <label asp-for="Estado" class="custom-control-label"></label>
+                    <label asp-for="Estado" class="custom-control-label">Activo</label>
                     <span asp-validation-for="Estado" class="text-danger"></span>
                 </div>
             </div>
+
             <div class="form-group">
-                <label asp-for="PartidoId" class="control-label"></label>
-                <select asp-for="PartidoId" class="form-control" asp-items="ViewBag.PartidoId"></select>
-                <span asp-validation-for="PartidoId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PuestoElectivosId" class="control-label"></label>
-                <select asp-for="PuestoElectivosId" class="form-control" asp-items="ViewBag.PuestoElectivosId"></select>
-                <span asp-validation-for="PuestoElectivosId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" /> |
+                <a asp-action="Index">Volver a Listado</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

@@ -1,34 +1,36 @@
 ﻿@model IEnumerable<SistemaVotacionAutomatizada.Models.PuestoElectivos>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Puestos Electivos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<<<<<<< HEAD
 <h1>Index</h1>
 @if (ViewBag.InfoEleccionActiva != null)
 {
     <div class="alert alert-warning">@ViewBag.InfoEleccionActiva</div>
 }
+=======
+<h1>Puestos Electivos</h1>
+
+>>>>>>> master
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Crear Puesto</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead class="table-primary">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
+            <th>Descripción</th>
+            <th>Activo</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
+<<<<<<< HEAD
         @foreach (var item in Model)
         {
             <tr>
@@ -48,5 +50,25 @@
                 </td>
             </tr>
         }
+=======
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <!--<a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |-->
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+>>>>>>> master
     </tbody>
 </table>

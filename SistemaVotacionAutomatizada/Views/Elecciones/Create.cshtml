@@ -1,7 +1,7 @@
 ﻿@model SistemaVotacionAutomatizada.Models.Elecciones
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Creación Elección";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -20,7 +20,7 @@
 
             <div class="custom-control custom-switch">
                 <input asp-for="Estado" type="checkbox" class="custom-control-input">
-                <label asp-for="Estado" class="custom-control-label"></label>
+                <label asp-for="Estado" class="custom-control-label">Activo</label>
                 <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
 
@@ -34,7 +34,7 @@
             <div class="form-group">
 
                 <div style="margin-top:1rem;" class="form-group">
-                    <input type="submit" value="Crear" class="btn btn-primary" />
+                    <input type="submit" value="Crear" class="btn btn-primary" /> |
                     <a asp-action="Index">Volver a Listado</a>
                 </div>
             </div>
