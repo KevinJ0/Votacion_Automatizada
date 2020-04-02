@@ -8,16 +8,23 @@
 <h1>Procesos Electorales</h1>
 
 <!--Pablo: agregar condicionante para esconder boton-->
+
+@if (ViewBag.ErrorNCandidatos != null)
+{
+    <div class="alert alert-danger"><strong>@ViewBag.ErrorNCandidatos</strong></div>
+}
+
+
+@if (ViewBag.InfoEleccionActiva != null)
+{
+    <div class="alert alert-info">@ViewBag.InfoEleccionActiva</div>
+}
 @if (ViewBag.ProcesoElectroral != true)
 {
     <div class="form-group">
         <a asp-action="Create" class="btn btn-primary">Nueva Elección</a>
     </div>
 }
-
-
-
-
 <table class="table table-hover">
     <thead class="table-primary">
         <tr>
@@ -33,7 +40,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.OrderByDescending(x => x.Fecha).OrderByDescending(x => x.Estado == true))
         {
             <tr>
                 <td>
@@ -51,12 +58,12 @@
 
                     @if (ViewBag.ProcesoElectroral == true && item.Estado == true)
                     {
-                    <form method="post">
+                        <form method="post">
 
-                      
+
                             <input type="submit" asp-action="FinalizarEleccion" class="btn btn-danger" value="Finalizar Elección" />
-                        
-                    </form>
+
+                        </form>
                     }
                     else
                     {

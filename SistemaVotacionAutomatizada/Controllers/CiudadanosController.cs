@@ -23,6 +23,12 @@ namespace SistemaVotacionAutomatizada.Controllers
         // GET: Ciudadanos
         public async Task<IActionResult> Index()
         {
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+
+            if (context == true)
+            {
+                ViewBag.InfoEleccionActiva = "En estos momentos existe una elección activa";
+            }
             return View(await _context.Ciudadanos.ToListAsync());
         }
 
@@ -45,8 +51,13 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // GET: Ciudadanos/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+            if (context == true)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             return View();
         }
 
@@ -69,6 +80,11 @@ namespace SistemaVotacionAutomatizada.Controllers
         // GET: Ciudadanos/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+            if (context == true)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             if (id == null)
             {
                 return NotFound();
@@ -120,6 +136,11 @@ namespace SistemaVotacionAutomatizada.Controllers
         // GET: Ciudadanos/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+            if (context == true)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             if (id == null)
             {
                 return NotFound();

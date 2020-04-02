@@ -13,8 +13,7 @@ namespace SistemaVotacionAutomatizada.Controllers
     //[Authorize]
     public class EleccionesController : Controller
     {
-        private readonly ApplicationDbContext _context;
-
+        private readonly ApplicationDbContext _context; 
         public EleccionesController(ApplicationDbContext context)
         {
             _context = context;
@@ -23,13 +22,23 @@ namespace SistemaVotacionAutomatizada.Controllers
         // GET: Elecciones
         public async Task<IActionResult> Index()
         {
-            ViewBag.ProcesoElectroral = false;
 
-            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
-            if (context == true) {
-                ViewBag.ProcesoElectroral = true;
+            int candidatos = _context.Candidatos.Where(x => x.Estado == true).Count();
+
+            if (candidatos < 2)
+            {
+                ViewBag.ErrorNCandidatos = "Para poder iniciar una nueva elección se requiere un mínimo dos candidatos activos";
             }
 
+            bool EleccionActiva = false;
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+
+            if (context == true)
+            {
+                ViewBag.InfoEleccionActiva = "En estos momentos existe una elección activa";
+                EleccionActiva = true;
+            }
+            ViewBag.ProcesoElectroral = EleccionActiva;
             return View(await _context.Elecciones.ToListAsync());
         }
 
@@ -52,8 +61,17 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // GET: Elecciones/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            int candidatos = _context.Candidatos.Where(x => x.Estado == true).Count();
+            bool AnyEleccionActiva = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+
+            
+
+            if (AnyEleccionActiva || candidatos < 2) {
+                return RedirectToAction(nameof(Index));
+
+            }
             return View();
         }
 
@@ -76,6 +94,11 @@ namespace SistemaVotacionAutomatizada.Controllers
         // GET: Elecciones/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+            if (context == true)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             if (id == null)
             {
                 return NotFound();
@@ -127,6 +150,12 @@ namespace SistemaVotacionAutomatizada.Controllers
         // GET: Elecciones/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+            if (context == true)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             if (id == null)
             {
                 return NotFound();
@@ -147,6 +176,7 @@ namespace SistemaVotacionAutomatizada.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+           
             var elecciones = await _context.Elecciones.FindAsync(id);
             _context.Elecciones.Remove(elecciones);
             await _context.SaveChangesAsync();
@@ -167,7 +197,7 @@ namespace SistemaVotacionAutomatizada.Controllers
                 return NotFound();
             }
 
-            if(elecciones.Estado == true)
+            if (elecciones.Estado == true)
             {
 
                 return RedirectToAction(nameof(Index));
@@ -175,18 +205,21 @@ namespace SistemaVotacionAutomatizada.Controllers
 
             ViewBag.ListPartidos = _context.Partidos.ToList();
             ViewBag.FechaEleccion = elecciones.Fecha.GetDateTimeFormats('D')[0];
-            var applicationDbContext =  _context.VotosElecciones.Where(x=> x.EleccionId == id).Include(v => v.Candidato.PuestoElectivos);
-           
+            var applicationDbContext = _context.VotosElecciones.Where(x => x.EleccionId == id).Include(v => v.Candidato.PuestoElectivos);
+
             return View(await applicationDbContext.ToListAsync());
 
-            
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> FinalizarEleccion()
         {
-
+            if (!await _context.Elecciones.AnyAsync(x => x.Estado == true))
+            {
+                return RedirectToAction(nameof(Index));
+            }
             var query = (from a in _context.Elecciones
                          select a).ToList();
 
@@ -198,7 +231,7 @@ namespace SistemaVotacionAutomatizada.Controllers
             _context.UpdateRange(query);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-          
+
         }
 
 

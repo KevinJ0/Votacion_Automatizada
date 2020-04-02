@@ -36,7 +36,7 @@
                             {
                                 int cantVotos = @Model.Where(x => x.CandidatoId == itemCand.Id).Count();
                                 int cantVotosTotales = @Model.Where(x => x.Candidato.PuestoElectivosId == itemCand.PuestoElectivosId).Count();
-                                float barFillValue = ((cantVotos * 100) / (float)cantVotosTotales);
+                                decimal barFillValue = Math.Round((decimal)((cantVotos * 100) / (decimal)cantVotosTotales),4);
                             <p>
                                 <strong> @Html.DisplayFor(modelItem => itemCand.Nombre) @Html.DisplayFor(modelItem => itemCand.Apellido)</strong>
                             </p>

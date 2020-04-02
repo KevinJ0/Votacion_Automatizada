@@ -42,6 +42,13 @@ namespace SistemaVotacionAutomatizada.Controllers
         // GET: Candidatos
         public async Task<IActionResult> Index()
         {
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+
+            if (context == true)
+            {
+                ViewBag.InfoEleccionActiva = "En estos momentos existe una elección activa";
+            }
+
             var applicationDbContext = _context.Candidatos.Include(c => c.Partido).Include(c => c.PuestoElectivos);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -64,8 +71,13 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // GET: Candidatos/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+            if (context == true)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             ViewData["PartidoId"] = new SelectList(_context.Partidos, "Id", "Nombre");
             ViewData["PuestoElectivosId"] = new SelectList(_context.PuestoElectivos, "Id", "Nombre");
             return View();
@@ -76,6 +88,11 @@ namespace SistemaVotacionAutomatizada.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CandidatosDTO model)
         {
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+            if (context == true)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             var canditado = new Candidatos();
             if (ModelState.IsValid)
             {
@@ -102,6 +119,11 @@ namespace SistemaVotacionAutomatizada.Controllers
         // GET: Candidatos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+            if (context == true)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             ViewData["PartidoId"] = new SelectList(_context.Partidos, "Id", "Nombre");
             ViewData["PuestoElectivosId"] = new SelectList(_context.PuestoElectivos, "Id", "Nombre");
 
@@ -189,6 +211,11 @@ namespace SistemaVotacionAutomatizada.Controllers
         // GET: Candidatos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+            if (context == true)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             if (id == null)
             {
                 return NotFound();
@@ -211,6 +238,11 @@ namespace SistemaVotacionAutomatizada.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
+            if (context == true)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             var candidatos = await _context.Candidatos.FindAsync(id);
             _context.Candidatos.Remove(candidatos);
             await _context.SaveChangesAsync();

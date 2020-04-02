@@ -6,7 +6,10 @@
 }
 
 <h1>Index</h1>
-
+@if (ViewBag.InfoEleccionActiva != null)
+{
+    <div class="alert alert-warning">@ViewBag.InfoEleccionActiva</div>
+}
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -29,27 +32,28 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-    var photoPath ="~/images/" + ((!string.IsNullOrEmpty(item.Logo) ? item.Logo : "nophoto.png" ));
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                <img style="width: 200px;height: 200px" src="@photoPath" alt="Alternate Text" asp-append-version="true" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            var photoPath = "~/images/" + ((!string.IsNullOrEmpty(item.Logo) ? item.Logo : "nophoto.png"));
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    <img style="width: 200px;height: 200px" src="@photoPath" alt="Alternate Text" asp-append-version="true" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

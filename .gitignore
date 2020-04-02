@@ -11,6 +11,7 @@
 *.sln.docstates
 .vs/
 SistemaVotacionAutomatizada/obj/
+SistemaVotacionAutomatizada/bin/
 SistemaVotacionAutomatizada/wwwroot/images/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
