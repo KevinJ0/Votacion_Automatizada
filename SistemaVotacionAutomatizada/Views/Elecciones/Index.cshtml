@@ -25,10 +25,7 @@
         <a asp-action="Create" class="btn btn-primary">Nueva Elección</a>
     </div>
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 <table class="table table-hover">
     <thead class="table-primary">
         <tr>
@@ -60,34 +57,6 @@
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
-
-<<<<<<< HEAD
-                    @if (ViewBag.ProcesoElectroral == true && item.Estado == true)
-                    {
-                        <form method="post">
-
-
-                            <input type="submit" asp-action="FinalizarEleccion" class="btn btn-danger" value="Finalizar Elección" />
-
-                        </form>
-                    }
-                    else
-                    {
-
-                        <a asp-action="VerResultados" asp-route-id="@item.Id" class="btn btn-primary">Ver Resultados</a>
-                    }
-
-
-
-                </td>
-
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-=======
                 @if (ViewBag.ProcesoElectroral == true && item.Estado == true)
                 {
                     <form method="post">
@@ -107,7 +76,6 @@
                 <a asp-action="Delete" asp-route-id="item.Id">Eliminar </a>
             </td>-->
         </tr>
->>>>>>> master
         }
     </tbody>
 </table>

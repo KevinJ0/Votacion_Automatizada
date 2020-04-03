@@ -27,17 +27,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Partido)
             </th>
-<<<<<<< HEAD
-            <th>
-                Puesto Electivo
-            </th>
-            <th>
-                Activo
-            </th>
-=======
             <th>Puesto Electivo</th>
             <th>Activo</th>
->>>>>>> master
             <th></th>
         </tr>
     </thead>
@@ -69,23 +60,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Estado)
                 </td>
-
-<<<<<<< HEAD
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
-                </td>
-            </tr>
-        }
-=======
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
                 <!--<a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |-->
                 <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>
         </tr>
-}
->>>>>>> master
+        }
     </tbody>
 </table>
