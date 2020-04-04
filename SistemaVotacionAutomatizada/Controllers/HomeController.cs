@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using SistemaVotacionAutomatizada.Helpers;
 using Newtonsoft.Json;
 using Mantenimiento.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SistemaVotacionAutomatizada.Controllers
 {
@@ -55,6 +56,7 @@ namespace SistemaVotacionAutomatizada.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult MenuAdmin()
         {
             return View();
