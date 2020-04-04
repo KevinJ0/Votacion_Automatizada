@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -161,7 +162,7 @@ namespace SistemaVotacionAutomatizada.Controllers
             ViewData["EleccionId"] = new SelectList(_context.Elecciones, "Id", "Nombre", votosElecciones.EleccionId);
             return View(votosElecciones);
         }
-                [Authorize]
+        [Authorize]
         // GET: VotosElecciones/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -329,7 +330,8 @@ namespace SistemaVotacionAutomatizada.Controllers
                 EleccionId = eleccionId,
             };
 
-            if (candidatoId != -1) {
+            if (candidatoId != -1)
+            {
                 puestoElectivoId = _context.Candidatos.Find(candidatoId).PuestoElectivosId;
             }
             List<int> PuestoElectivoIdJson = new List<int>();
@@ -356,45 +358,48 @@ namespace SistemaVotacionAutomatizada.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> finalizarVotacion()
         {
-
             string ciudadanoId = HttpContext.Session.GetString(VotoKeys.KeyCiudadanoId);
             int? eleccionId = HttpContext.Session.GetInt32(VotoKeys.KeyEleccionId);
 
             Elecciones eleccion = _context.Elecciones.Find(eleccionId);
             Ciudadanos ciudadano = _context.Ciudadanos.Find(ciudadanoId);
 
-            List<VotosElecciones> VotosJson = VotosJson = new List<VotosElecciones>(); ;
+            List<VotosElecciones> VotosJson = VotosJson = new List<VotosElecciones>();
             var str = HttpContext.Session.GetString(VotoKeys.KeyVotos);
             // esto indica si existe alguna lista de votos creada
             if (str != null) VotosJson = JsonConvert.DeserializeObject<List<VotosElecciones>>(str);
-
-         
-
-            IEnumerable<VotosElecciones> Votos = VotosJson.Where(x => x.CandidatoId != null).Distinct();
+            List<VotosElecciones> Votos = VotosJson.Where(x => x.CandidatoId != null).Distinct().ToList();
             if (Votos.Count() <= 0)
             {
-                Votos.Append(new VotosElecciones { CandidatoId =  null, CiudadanoId = ciudadanoId, EleccionId = eleccionId});
+                Votos.Add(new VotosElecciones { CandidatoId = null, CiudadanoId = ciudadanoId, EleccionId = eleccionId });
                 await _context.AddRangeAsync(Votos);
             }
-            else { 
-            
-            await _context.AddRangeAsync(Votos);
+            else
+            {
+
+                await _context.AddRangeAsync(Votos);
 
             }
-          
+
 
             await _context.SaveChangesAsync();
 
             string content = "<h5>Aqui estan la lista de candidatos por la cual votaste: </h5><br><br>";
             foreach (var item in Votos)
             {
-                Candidatos candidato = _context.Candidatos.Find(item.CandidatoId);
-                String puestoElectivo = _context.PuestoElectivos.Find(candidato.PuestoElectivosId).Nombre;
-                String partido = _context.Partidos.Find(candidato.PartidoId).Nombre;
-                content = content + "<br/>" + "Puesto electivo: " + puestoElectivo + "<br/>Candidato: " + candidato.Nombre + " " + candidato.Apellido
+                Candidatos candidato = null;
+                String puestoElectivo = "Ninguno";
+                String partido = "Ninguno";
+                if (item.CandidatoId != null)
+                {
+                    candidato = _context.Candidatos.Find(item.CandidatoId);
+                    puestoElectivo = _context.PuestoElectivos.Find(candidato.PuestoElectivosId).Nombre;
+                    partido = _context.Partidos.Find(candidato.PartidoId).Nombre;
+                }
+                content = content + "<br/>" + "Puesto electivo: " + puestoElectivo + "<br/>Candidato: " + (candidato == null ? "Ninguno" : candidato.Nombre + " " + candidato.Apellido)
                     + "<br/>Partido: " + partido + "<hr>";
             }
-            string titulo = "Elecciones " + eleccion.Nombre.Trim() +" "+ eleccion.Fecha.GetDateTimeFormats('d')[0];
+            string titulo = "Elecciones " + eleccion.Nombre.Trim() + " " + eleccion.Fecha.GetDateTimeFormats('d')[0];
 
             // enviamos el correo
             string EmailOrigen = "itlaprueba4@gmail.com";
