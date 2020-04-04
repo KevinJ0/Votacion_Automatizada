@@ -33,7 +33,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Candidato.Apellido)
+                    @if (item.Candidato != null) {
+                        @Html.DisplayFor(modelItem => item.Candidato.Nombre);
+                        <span> </span>
+                        @Html.DisplayFor(modelItem => item.Candidato.Apellido);
+                    }else{
+                        <span class="alert-danger">Ninguno</span>
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Ciudadano.Id)

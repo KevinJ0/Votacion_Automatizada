@@ -195,14 +195,15 @@ namespace SistemaVotacionAutomatizada.Controllers
                 return View();
             }
             IEnumerable<PuestoElectivos> puestoElect;
-            List<int> PuestoElectivoIdJson  = new List<int>(); 
+            List<int> PuestoElectivoIdJson = new List<int>();
             var str = HttpContext.Session.GetString(VotoKeys.KeyPuestoElectivos);
             // esto indica si existe alguna lista de votos creada
 
-            if (str != null) 
+            if (str != null)
             {
                 PuestoElectivoIdJson = JsonConvert.DeserializeObject<List<int>>(str);
-                if(PuestoElectivoIdJson.Count > 0) {
+                if (PuestoElectivoIdJson.Count > 0)
+                {
                     puestoElect = _context.PuestoElectivos
                    .Where(x => x.Estado == true)
                    .Where(a => _context.Candidatos
@@ -210,7 +211,8 @@ namespace SistemaVotacionAutomatizada.Controllers
                    .Where(a => !PuestoElectivoIdJson.Contains(a.Id))
                    .ToList();
 
-                    if (puestoElect.Count() <= 0) {
+                    if (puestoElect.Count() <= 0)
+                    {
                         ViewBag.VotacionFin = true;
                     }
                     return View(puestoElect);
@@ -219,7 +221,7 @@ namespace SistemaVotacionAutomatizada.Controllers
             }
 
 
-         
+
 
             puestoElect = await _context.PuestoElectivos
                 .Where(x => x.Estado == true)
@@ -278,6 +280,8 @@ namespace SistemaVotacionAutomatizada.Controllers
                 ViewBag.ErrorValidarEleccionActiva = "El proceso de votación ha sido finalizado.";
                 return View();
             }
+            // si voto por ninguno lo mando directo a guardar
+            if (partidoId == 0) return RedirectToAction("guardaCandidatoSession", new { candidatoId = -1 });
 
             //valida que el estado sea true del puesto electivo
             bool PuestoElecActivo = _context.PuestoElectivos.Any(x => x.Id == puestoId && x.Estado == true);
@@ -288,36 +292,44 @@ namespace SistemaVotacionAutomatizada.Controllers
                 .ToListAsync();
             ViewBag.Partido = _context.Partidos.Find(partidoId).Nombre;
             ViewBag.PuestoElectivo = _context.PuestoElectivos.Find(puestoId).Nombre;
-                
+
             return View(candidatos);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> guardaCandidatoSession(int? candidatoId)
-        {  
+        public async Task<IActionResult> guardaCandidatoSession(int? candidatoId, int? puestoElectivoId = null)
+        {
+
+
+
+
             string ciudadanoId = HttpContext.Session.GetString(VotoKeys.KeyCiudadanoId);
             int? eleccionId = HttpContext.Session.GetInt32(VotoKeys.KeyEleccionId);
-
-            if (eleccionId == null || ciudadanoId == null) {
+            if (eleccionId == null || ciudadanoId == null)
+            {
                 return RedirectToAction("ValidadorCedula", "Home");
             }
 
+
             Candidatos candidato = _context.Candidatos.Find(candidatoId);
-            Elecciones eleccion = _context.Elecciones.Find(eleccionId);
-            Ciudadanos ciudadano = _context.Ciudadanos.Find(ciudadanoId);
+            //Elecciones eleccion = _context.Elecciones.Find(eleccionId);
+            //Ciudadanos ciudadano = _context.Ciudadanos.Find(ciudadanoId);
 
             VotosElecciones voto = new VotosElecciones
             {
-                CandidatoId = candidatoId,
+                // esto pertenece a ninguno 
+                CandidatoId = candidatoId == -1 ? null : candidatoId,
                 CiudadanoId = ciudadanoId,
                 EleccionId = eleccionId,
 
             };
-            int puestoElectivoId = candidato.PuestoElectivosId;
 
+            if (candidatoId != -1) {
+                puestoElectivoId = _context.Candidatos.Find(candidatoId).PuestoElectivosId;
+            }
             List<int> PuestoElectivoIdJson = new List<int>();
-            List<VotosElecciones> VotosJson = new List<VotosElecciones>(); 
+            List<VotosElecciones> VotosJson = new List<VotosElecciones>();
 
             var str = HttpContext.Session.GetString(VotoKeys.KeyVotos);
             // esto indica si existe alguna lista de votos creada
@@ -325,12 +337,13 @@ namespace SistemaVotacionAutomatizada.Controllers
             VotosJson.Add(voto);
             HttpContext.Session.SetString(VotoKeys.KeyVotos, JsonConvert.SerializeObject(VotosJson));
 
-
-            var ListPuestoElect = HttpContext.Session.GetString(VotoKeys.KeyPuestoElectivos);
-            if (ListPuestoElect != null) PuestoElectivoIdJson = JsonConvert.DeserializeObject<List<int>>(ListPuestoElect);
-            PuestoElectivoIdJson.Add(puestoElectivoId);
-            HttpContext.Session.SetString(VotoKeys.KeyPuestoElectivos, JsonConvert.SerializeObject(PuestoElectivoIdJson));
-
+            if (puestoElectivoId != null)
+            {
+                var ListPuestoElect = HttpContext.Session.GetString(VotoKeys.KeyPuestoElectivos);
+                if (ListPuestoElect != null) PuestoElectivoIdJson = JsonConvert.DeserializeObject<List<int>>(ListPuestoElect);
+                PuestoElectivoIdJson.Add((int)puestoElectivoId);
+                HttpContext.Session.SetString(VotoKeys.KeyPuestoElectivos, JsonConvert.SerializeObject(PuestoElectivoIdJson));
+            }
             return RedirectToAction(nameof(selectPuestoElectivo));
 
 
@@ -339,19 +352,19 @@ namespace SistemaVotacionAutomatizada.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> finalizarVotacion()
-        { 
-         List<VotosElecciones> VotosJson = VotosJson = new List<VotosElecciones>(); ;
+        {
+            List<VotosElecciones> VotosJson = VotosJson = new List<VotosElecciones>(); ;
             var str = HttpContext.Session.GetString(VotoKeys.KeyVotos);
             // esto indica si existe alguna lista de votos creada
             if (str != null) VotosJson = JsonConvert.DeserializeObject<List<VotosElecciones>>(str);
 
-            await _context.AddRangeAsync(VotosJson);
+            await _context.AddRangeAsync(VotosJson.Where(x=> x.CandidatoId != null).Distinct());
             await _context.SaveChangesAsync();
             HttpContext.Session.Clear();
-            return RedirectToAction("ValidadorCedula","Home");
-        
+            return RedirectToAction("ValidadorCedula", "Home");
+
         }
-            public async Task<IActionResult> ResultadosVoto(int votoId)
+        public async Task<IActionResult> ResultadosVoto(int votoId)
         {
             VotosElecciones votosElecciones = await _context.VotosElecciones.FindAsync(votoId);
             return View(votosElecciones);
