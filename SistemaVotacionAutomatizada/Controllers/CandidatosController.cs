@@ -15,7 +15,7 @@ using SistemaVotacionAutomatizada.Models;
 
 namespace SistemaVotacionAutomatizada.Controllers
 {
-    //[Authorize]
+    [Authorize]
 
     public class CandidatosController : Controller
     {
@@ -110,7 +110,7 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // GET: Candidatos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task< IActionResult> Edit(int? id)
         {
             var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
             if (context == true)

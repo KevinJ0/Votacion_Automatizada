@@ -11,6 +11,7 @@ using SistemaVotacionAutomatizada.Models;
 
 namespace SistemaVotacionAutomatizada.Controllers
 {
+    [Authorize]
     public class PuestoElectivosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -40,7 +41,6 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // GET: PuestoElectivos
-        [Authorize]
         public async Task<IActionResult> Index()
         {
             var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
@@ -53,7 +53,6 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // GET: PuestoElectivos/Details/5
-        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -72,7 +71,7 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // GET: PuestoElectivos/Create
-        [Authorize]
+   
         public async Task<IActionResult> Create()
         {
             var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
@@ -84,7 +83,7 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // POST: PuestoElectivos/Create
-        [Authorize]
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Estado")] PuestoElectivos puestoElectivos)
@@ -121,7 +120,7 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // POST: PuestoElectivos/Edit/5
-        [Authorize]
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Estado")] PuestoElectivos puestoElectivos)
@@ -155,7 +154,7 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // GET: PuestoElectivos/Delete/5
-        [Authorize]
+     
         public async Task<IActionResult> Delete(int? id)
         {
             var context = await _context.Elecciones.AnyAsync(x => x.Estado == true);
@@ -179,7 +178,7 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
 
         // POST: PuestoElectivos/Delete/5
-        [Authorize]
+       
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

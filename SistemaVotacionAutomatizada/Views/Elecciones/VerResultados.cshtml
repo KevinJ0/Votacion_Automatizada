@@ -20,7 +20,7 @@
 
     <tbody>
         @{string NombrePuesto = "Collap"; int count = 0;}
-        @foreach (var item in Model.Select(x => x.Candidato.PuestoElectivos).ToList().Distinct())
+        @foreach (var item in Model.Where(x=> x.Candidato != null).Select(x => x.Candidato.PuestoElectivos).ToList().Distinct())
         {
             var Nombre = NombrePuesto + count;
             <tr id="accordion">
@@ -32,10 +32,10 @@
                     </div>
                     <div id="@Nombre" class="collapse show" data-parent="#accordion">
                         <div class="card-body">
-                            @foreach (var itemCand in Model.Select(x => x.Candidato).Where(x => x.PuestoElectivosId == item.Id).OrderByDescending(x => x.VotosElecciones.Count).Distinct())
+                            @foreach (var itemCand in Model.Where(x=> x.Candidato != null).Select(x => x.Candidato).Where(x => x.PuestoElectivosId == item.Id).OrderByDescending(x => x.VotosElecciones.Count).Distinct())
                             {
                                 int cantVotos = @Model.Where(x => x.CandidatoId == itemCand.Id).Count();
-                                int cantVotosTotales = @Model.Where(x => x.Candidato.PuestoElectivosId == itemCand.PuestoElectivosId).Count();
+                                int cantVotosTotales = @Model.Where(x=> x.Candidato != null).Where(x => x.Candidato.PuestoElectivosId == itemCand.PuestoElectivosId).Count();
                                 decimal barFillValue = Math.Round((decimal)((cantVotos * 100) / (decimal)cantVotosTotales),4);
                             <p>
                                 <strong> @Html.DisplayFor(modelItem => itemCand.Nombre) @Html.DisplayFor(modelItem => itemCand.Apellido)</strong>
@@ -68,7 +68,7 @@
 </table>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary">Volver a Listado</a>
 </div>
 
 @section Scripts {

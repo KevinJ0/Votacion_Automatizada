@@ -10,7 +10,7 @@ using SistemaVotacionAutomatizada.Models;
 
 namespace SistemaVotacionAutomatizada.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class EleccionesController : Controller
     {
         private readonly ApplicationDbContext _context; 

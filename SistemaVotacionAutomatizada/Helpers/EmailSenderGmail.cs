@@ -43,12 +43,12 @@ namespace SistemaVotacionAutomatizada.Helpers
                     //mecanismo de google autenticacion que usa token; se quita para que use solo credenciales correo
                     client.AuthenticationMechanisms.Remove("X0AUTH2");
                     await client.AuthenticateAsync(_emailConfiguration.UserName, _emailConfiguration.Password);
-                    await SendAsync(mailMessage);
+                    await SendAsync(new MimeMessage());
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    throw;
+                    //throw;
                 }
                 //siempre se ejecuta
                 finally
