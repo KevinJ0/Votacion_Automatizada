@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SistemaVotacionAutomatizada.Helpers
 {
-    public class EmailSenderGmail:IEmailSender
+    public class EmailSenderGmail : IEmailSender
     {
         private readonly EmailConfiguration _emailConfiguration;
 
@@ -42,7 +42,7 @@ namespace SistemaVotacionAutomatizada.Helpers
                     await client.ConnectAsync(_emailConfiguration.SmtpServer, _emailConfiguration.Port, true);
                     //mecanismo de google autenticacion que usa token; se quita para que use solo credenciales correo
                     client.AuthenticationMechanisms.Remove("X0AUTH2");
-                    await client.AuthenticateAsync(_emailConfiguration.UserName,_emailConfiguration.Password);
+                    await client.AuthenticateAsync(_emailConfiguration.UserName, _emailConfiguration.Password);
                     await SendAsync(mailMessage);
                 }
                 catch (Exception e)

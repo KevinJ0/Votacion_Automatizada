@@ -16,15 +16,20 @@ namespace SistemaVotacionAutomatizada.Controllers
     public class VotosEleccionesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IEmailSender _emailSender;
 
-        public VotosEleccionesController(ApplicationDbContext context)
+        public VotosEleccionesController(ApplicationDbContext context, IEmailSender emailSender)
         {
             _context = context;
+            _emailSender = emailSender;
         }
 
         // GET: VotosElecciones
         public async Task<IActionResult> Index()
         {
+            var message = new Message(new String[] { "kevinjooo59@gmail.com" }, "Titulo", "Estoy probando");
+            await _emailSender.SendEmailAsync(message);
+
             var applicationDbContext = _context.VotosElecciones.Include(v => v.Candidato).Include(v => v.Ciudadano).Include(v => v.Eleccion);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -220,9 +225,6 @@ namespace SistemaVotacionAutomatizada.Controllers
 
             }
 
-
-
-
             puestoElect = await _context.PuestoElectivos
                 .Where(x => x.Estado == true)
                 .Where(a => _context.Candidatos
@@ -301,16 +303,12 @@ namespace SistemaVotacionAutomatizada.Controllers
         public async Task<IActionResult> guardaCandidatoSession(int? candidatoId, int? puestoElectivoId = null)
         {
 
-
-
-
             string ciudadanoId = HttpContext.Session.GetString(VotoKeys.KeyCiudadanoId);
             int? eleccionId = HttpContext.Session.GetInt32(VotoKeys.KeyEleccionId);
             if (eleccionId == null || ciudadanoId == null)
             {
                 return RedirectToAction("ValidadorCedula", "Home");
             }
-
 
             Candidatos candidato = _context.Candidatos.Find(candidatoId);
             //Elecciones eleccion = _context.Elecciones.Find(eleccionId);
@@ -322,7 +320,6 @@ namespace SistemaVotacionAutomatizada.Controllers
                 CandidatoId = candidatoId == -1 ? null : candidatoId,
                 CiudadanoId = ciudadanoId,
                 EleccionId = eleccionId,
-
             };
 
             if (candidatoId != -1) {
@@ -345,7 +342,6 @@ namespace SistemaVotacionAutomatizada.Controllers
                 HttpContext.Session.SetString(VotoKeys.KeyPuestoElectivos, JsonConvert.SerializeObject(PuestoElectivoIdJson));
             }
             return RedirectToAction(nameof(selectPuestoElectivo));
-
 
         }
 

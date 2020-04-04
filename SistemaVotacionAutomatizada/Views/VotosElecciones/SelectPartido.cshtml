@@ -1,0 +1,56 @@
+﻿
+@model IEnumerable<SistemaVotacionAutomatizada.Models.Partidos>
+
+<link rel="stylesheet" href="~/css/selectPartido.css">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+@if (ViewBag.ErrorValidarEleccionActiva != null)
+{
+    <div class="alert alert-danger"><strong>@ViewBag.ErrorValidarEleccionActiva</strong></div>
+    <div class="align-content" width=100><a class="btn btn-danger" asp-controller="Home" asp-action="Index">Regresar</a></div>
+}
+<main class="main">
+
+    <form method="get" class="cards" asp-action="selectCandidato">
+        @if (Model != null)
+        {
+            @foreach (var item in Model.Distinct())
+            {
+
+                var photoPath = "~/images/" + ((!string.IsNullOrEmpty(item.Logo) ? item.Logo : "nophoto.png"));
+
+                <a asp-action="selectCandidato" asp-route-partidoId="@item.Id" asp-route-puestoId="@ViewBag.PuestoElectivoId" class="card">
+
+                    <div class="card__image-container">
+                        <img src="@photoPath" alt="Imagen del partido" asp-append-version="true" />
+                    </div>
+                    <div class="card__content">
+                        <p class="card__title text--medium">
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </p>
+
+                    </div>
+                </a>
+            }
+
+        }
+    </form>
+    <!---- Este es el codigo para ninguno---->
+    <form method="post" id="formularioSeleccion" class="cards" asp-action="guardaCandidatoSession">
+
+        <a onclick="document.getElementById('formularioSeleccion').submit();" class="card">
+        <input type="hidden" name="candidatoId" value="-1" />
+        <input type="hidden" name="puestoElectivoId" value="@ViewBag.PuestoElectivoId" />
+
+        <div class="card__image-container">
+            <img src="~/images/novote.png" alt="Imagen del partido" asp-append-version="true" />
+        </div>
+        <div class="card__content">
+            <p class="card__title text--medium">
+                Ninguno
+            </p>
+
+        </div>
+            </a>
+    </form>
+
+</main>

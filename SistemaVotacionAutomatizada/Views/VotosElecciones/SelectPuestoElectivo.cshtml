@@ -1,0 +1,49 @@
+﻿
+@model IEnumerable<SistemaVotacionAutomatizada.Models.PuestoElectivos>
+
+<link rel="stylesheet" href="~/css/selectPuestoElectivo.css">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+
+
+@if (ViewBag.VotacionFin != null)
+{
+    <div class="jumbotron">
+        <h1>Completado</h1>
+        <p>Usted ha seleccionado un candidato por cada puesto electivo.</p>
+        <p class="text-sm-left">Presione Finalizar Votación para confimar sus votos y recibir el informe a su correo.</p>
+    </div>
+    <form asp-action="finalizarVotacion" method="post">
+
+        <input type="submit" class="btn btn-info btn-block" value="Finalizar Votación">
+    </form>
+}
+else
+{
+    <h2>Seleccione el puesto electivo por el que desea votar:</h2>
+}
+@if (ViewBag.ErrorValidarEleccionActiva != null)
+{
+    <div class="alert alert-danger"><strong>@ViewBag.ErrorValidarEleccionActiva</strong></div>
+    <div class="align-content" width=100><a class="btn btn-danger" asp-controller="Home" asp-action="Index">Regresar</a></div>
+
+}
+<main class="main">
+
+    <form class="cards">
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <a asp-action="selectPartido" asp-route-puestoId="@item.Id" class="card">
+
+                    <div class="card__image-container">
+                        <p class="nombrePuesto">@Html.DisplayFor(modelItem => item.Nombre)</p>
+                    </div>
+
+                </a>
+            }
+        }
+    </form>
+
+
+</main>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SistemaVotacionAutomatizada.Models.Candidatos>
+
+<link rel="stylesheet" href="~/css/selectCandidato.css">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+@if (ViewBag.ErrorValidarEleccionActiva != null)
+{
+    <div class="alert alert-danger"><strong>@ViewBag.ErrorValidarEleccionActiva</strong></div>
+    <div class="align-content" width=100><a class="btn btn-danger" asp-controller="Home" asp-action="Index">Regresar</a></div>
+}
+
+<main class="main">
+    <form method="post" id="formularioSeleccion" class="cards" asp-action="guardaCandidatoSession">
+        @if (Model != null)
+        {
+            @foreach (var item in Model.Distinct())
+            {
+
+                var photoPath = "~/images/" + ((!string.IsNullOrEmpty(item.Photo) ? item.Photo : "nophoto.png"));
+                <a onclick="document.getElementById('formularioSeleccion').submit();" class="card">
+                    <input type="hidden" name="candidatoId" value="@item.Id" />
+                    <div class="card__image-container">
+                        <img src="@photoPath" alt="Imagen del partido" asp-append-version="true" />
+                    </div>
+                    <div class="card__content">
+                        <p class="card__title text--medium">
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </p>
+                        <div class="card__info">
+                            <p class="text--small">Partido: @ViewBag.Partido</p>
+                            <p class="card__price text--small">@ViewBag.PuestoElectivo</p>
+                        </div>
+                    </div>
+                </a>
+
+            }
+        }
+    </form>
+
+</main>
