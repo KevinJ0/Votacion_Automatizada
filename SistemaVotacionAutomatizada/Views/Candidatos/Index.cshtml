@@ -34,7 +34,7 @@
     </thead>
 
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.OrderByDescending(x=>x.Estado == true))
         {
             var photoPath = "~/images/" + ((!string.IsNullOrEmpty(item.Photo) ? item.Photo : "nophoto.png"));
 
