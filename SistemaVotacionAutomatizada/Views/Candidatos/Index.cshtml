@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SistemaVotacionAutomatizada.Models.Candidatos>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Candidatos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,9 +17,7 @@
 <table class="table table-hover">
     <thead class="table-primary">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Photo)
-            </th>
+            <th>Foto</th>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
@@ -29,12 +27,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Partido)
             </th>
-            <th>
-                Puesto Electivo
-            </th>
-            <th>
-                Activo
-            </th>
+            <th>Puesto Electivo</th>
+            <th>Activo</th>
             <th></th>
         </tr>
     </thead>
@@ -66,13 +60,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Estado)
                 </td>
-
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
-                </td>
-            </tr>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <!--<a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |-->
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
