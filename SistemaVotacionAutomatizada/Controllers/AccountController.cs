@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SistemaVotacionAutomatizada.Controllers
 {
@@ -21,7 +22,7 @@ namespace SistemaVotacionAutomatizada.Controllers
             this.signInManager = signInManager;
 
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult Register()
         {
@@ -65,7 +66,7 @@ namespace SistemaVotacionAutomatizada.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ValidadorCedula", "Home");
         }
 
         [HttpPost]
@@ -79,7 +80,7 @@ namespace SistemaVotacionAutomatizada.Controllers
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Home", "index");
+                    return RedirectToAction("Index", "Home");
                 }
 
 
