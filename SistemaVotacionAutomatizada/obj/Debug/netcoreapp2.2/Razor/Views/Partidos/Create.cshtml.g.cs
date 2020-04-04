@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #pragma checksum "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "c3945514a13858c2d5ad47ea06bc2575e4c63df8"
+=======
+#pragma checksum "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "78a6976264390fc659b07fa4a5631a66accb04f1"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #pragma checksum "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "78a6976264390fc659b07fa4a5631a66accb04f1"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -93,6 +97,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("\r\n<h1>Creación Partido</h1>\r\n<hr />\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-4\">\r\n        ");
             EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
             BeginContext(246, 1636, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3945514a13858c2d5ad47ea06bc2575e4c63df810017", async() => {
                 BeginContext(302, 14, true);
@@ -109,12 +114,25 @@ using Microsoft.AspNetCore.Identity;
                 BeginContext(317, 66, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f110354", async() => {
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
+=======
+            BeginContext(247, 1739, false);
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f19960", async() => {
+                BeginContext(303, 14, true);
+                WriteLiteral("\r\n            ");
+                EndContext();
+                BeginContext(317, 66, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f110354", async() => {
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 15 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 14 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 14 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -136,8 +154,13 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
                 WriteLiteral("\r\n            <div class=\"form-group\">\r\n                ");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BeginContext(438, 54, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3945514a13858c2d5ad47ea06bc2575e4c63df812300", async() => {
+=======
+                BeginContext(439, 54, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f112231", async() => {
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
                 BeginContext(439, 54, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f112231", async() => {
@@ -147,7 +170,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
                 __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 17 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 16 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 16 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -169,8 +196,13 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                ");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BeginContext(510, 47, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c3945514a13858c2d5ad47ea06bc2575e4c63df814057", async() => {
+=======
+                BeginContext(511, 47, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "78a6976264390fc659b07fa4a5631a66accb04f113977", async() => {
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
                 BeginContext(511, 47, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "78a6976264390fc659b07fa4a5631a66accb04f113977", async() => {
@@ -180,7 +212,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 18 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 17 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 17 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -202,8 +238,13 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                ");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BeginContext(575, 61, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3945514a13858c2d5ad47ea06bc2575e4c63df815808", async() => {
+=======
+                BeginContext(576, 61, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f115717", async() => {
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
                 BeginContext(576, 61, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f115717", async() => {
@@ -213,7 +254,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 19 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 18 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 18 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -235,21 +280,31 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
                 WriteLiteral("\r\n            </div>\r\n            <div class=\"form-group\">\r\n                ");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BeginContext(712, 59, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3945514a13858c2d5ad47ea06bc2575e4c63df817699", async() => {
 =======
+=======
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
                 BeginContext(713, 70, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f117597", async() => {
                     BeginContext(764, 11, true);
                     WriteLiteral("Descripción");
                     EndContext();
+<<<<<<< HEAD
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
+=======
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 22 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 21 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 21 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -271,8 +326,13 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                ");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BeginContext(789, 52, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c3945514a13858c2d5ad47ea06bc2575e4c63df819461", async() => {
+=======
+                BeginContext(801, 52, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "78a6976264390fc659b07fa4a5631a66accb04f119483", async() => {
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
                 BeginContext(801, 52, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "78a6976264390fc659b07fa4a5631a66accb04f119483", async() => {
@@ -282,7 +342,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 23 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 22 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 22 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -304,8 +368,13 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                ");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BeginContext(859, 66, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3945514a13858c2d5ad47ea06bc2575e4c63df821217", async() => {
+=======
+                BeginContext(871, 66, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f121228", async() => {
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
                 BeginContext(871, 66, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f121228", async() => {
@@ -315,7 +384,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 24 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 23 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 23 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -337,8 +410,13 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
                 WriteLiteral("\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <p>Foto</p>\r\n                <div class=\"custom-file\">\r\n                    ");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BeginContext(1077, 93, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c3945514a13858c2d5ad47ea06bc2575e4c63df823197", async() => {
+=======
+                BeginContext(1089, 93, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "78a6976264390fc659b07fa4a5631a66accb04f123197", async() => {
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
                 BeginContext(1089, 93, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "78a6976264390fc659b07fa4a5631a66accb04f123197", async() => {
@@ -348,7 +426,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 29 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 28 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 28 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -374,15 +456,21 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                    ");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BeginContext(1192, 89, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3945514a13858c2d5ad47ea06bc2575e4c63df825343", async() => {
                     BeginContext(1257, 16, true);
                     WriteLiteral("Escoge tu imagen");
 =======
+=======
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
                 BeginContext(1204, 89, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f125332", async() => {
                     BeginContext(1269, 16, true);
                     WriteLiteral("Escoge tu imágen");
+<<<<<<< HEAD
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
+=======
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
                     EndContext();
                 }
@@ -390,7 +478,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 30 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 29 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 29 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -413,8 +505,13 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                    ");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BeginContext(1303, 59, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3945514a13858c2d5ad47ea06bc2575e4c63df827332", async() => {
+=======
+                BeginContext(1315, 59, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f127310", async() => {
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
                 BeginContext(1315, 59, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f127310", async() => {
@@ -424,7 +521,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 31 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 30 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 30 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -446,8 +547,13 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
                 WriteLiteral("\r\n                </div>\r\n            </div>\r\n            <div class=\"custom-control custom-switch\">\r\n                ");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BeginContext(1480, 69, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c3945514a13858c2d5ad47ea06bc2575e4c63df829268", async() => {
+=======
+                BeginContext(1492, 69, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "78a6976264390fc659b07fa4a5631a66accb04f129235", async() => {
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
                 BeginContext(1492, 69, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "78a6976264390fc659b07fa4a5631a66accb04f129235", async() => {
@@ -457,7 +563,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 35 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 34 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 34 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -481,21 +591,31 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                ");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BeginContext(1567, 61, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3945514a13858c2d5ad47ea06bc2575e4c63df831239", async() => {
 =======
+=======
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
                 BeginContext(1579, 67, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f131195", async() => {
                     BeginContext(1632, 6, true);
                     WriteLiteral("Activo");
                     EndContext();
+<<<<<<< HEAD
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
+=======
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 36 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 35 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 35 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -517,8 +637,13 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                ");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BeginContext(1646, 61, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3945514a13858c2d5ad47ea06bc2575e4c63df832999", async() => {
+=======
+                BeginContext(1664, 61, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f133074", async() => {
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
                 BeginContext(1664, 61, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78a6976264390fc659b07fa4a5631a66accb04f133074", async() => {
@@ -528,7 +653,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 37 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 36 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 36 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
@@ -578,6 +707,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
             __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_12);
             __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Action = (string)__tagHelperAttribute_13.Value;
             __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_13);
@@ -606,6 +736,10 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
             __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_13);
             __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Action = (string)__tagHelperAttribute_14.Value;
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
+=======
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_13);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Action = (string)__tagHelperAttribute_14.Value;
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
             __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_14);
             await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
             if (!__tagHelperExecutionContext.Output.IsContentModified)
@@ -623,7 +757,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
                 WriteLiteral("\r\n");
                 EndContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
 #line 51 "C:\Users\blask\source\repos\ITLA\C#Intermedio\Votacion_Automatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+=======
+#line 47 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
+>>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
 =======
 #line 47 "C:\Users\KevinJ\source\repos\SistemaVotacionAutomatizada\SistemaVotacionAutomatizada\Views\Partidos\Create.cshtml"
 >>>>>>> 1ad1731b436f0830d25270ee0e940427e38c7d03
