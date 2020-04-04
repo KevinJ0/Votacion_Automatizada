@@ -31,13 +31,6 @@ namespace SistemaVotacionAutomatizada.Controllers
             _context = context;
          }
 
-        //Pablo: Menu Candidatos
-        public async Task<IActionResult> EleccionCandidato(int? id)
-        {
-            var candidatos = await _context.Candidatos.Where(x => x.PuestoElectivosId == id).ToListAsync();
-
-            return View(candidatos);
-        }
 
         // GET: Candidatos
         public async Task<IActionResult> Index()

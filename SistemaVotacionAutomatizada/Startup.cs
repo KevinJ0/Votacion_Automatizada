@@ -51,8 +51,8 @@ namespace SistemaVotacionAutomatizada
             }).AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddDistributedMemoryCache();
-            services.AddSession(option => { option.IdleTimeout = TimeSpan.FromHours(2); });
+            services.AddDistributedMemoryCache(); // sessiones
+            services.AddSession(option => { option.IdleTimeout = TimeSpan.FromHours(1); }); // sessiones
             services.AddAutoMapper(typeof(AutoMapperConfiguration).GetTypeInfo().Assembly);
             services.AddSingleton(emailConfig);
             services.AddScoped<IEmailSender, EmailSenderGmail>();

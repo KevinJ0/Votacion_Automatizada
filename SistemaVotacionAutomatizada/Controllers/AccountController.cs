@@ -32,8 +32,12 @@ namespace SistemaVotacionAutomatizada.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            if (signInManager.IsSignedIn(User)) return RedirectToAction("MenuAdmin", "Home");
 
+            if (signInManager.IsSignedIn(User))
+            {
+                HttpContext.Session.Clear();
+                return RedirectToAction("MenuAdmin", "Home");
+            }
             return View(); 
             
         }

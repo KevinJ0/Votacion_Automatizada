@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using SistemaVotacionAutomatizada.Models;
 using SistemaVotacionAutomatizada.DTO;
 using Microsoft.AspNetCore.Identity;
-
+using Microsoft.AspNetCore.Http;
+using SistemaVotacionAutomatizada.Helpers;
+using Newtonsoft.Json;
 
 namespace SistemaVotacionAutomatizada.Controllers
 {
@@ -16,14 +18,15 @@ namespace SistemaVotacionAutomatizada.Controllers
     {
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
-
-        public HomeController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        private readonly ApplicationDbContext _context;
+        public HomeController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ApplicationDbContext context)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-
+            _context = context;
         }
-
+      
+      
         public IActionResult Index()
         {
             if (signInManager.IsSignedIn(User)) return RedirectToAction("MenuAdmin", "Home");
@@ -39,31 +42,52 @@ namespace SistemaVotacionAutomatizada.Controllers
         [HttpGet]
         public IActionResult ValidadorCedula()
         {
+            //los administradores logueados no pueden entrar a esta area
             if (signInManager.IsSignedIn(User)) return RedirectToAction("MenuAdmin", "Home");
 
+            var eleccionActiva = _context.Elecciones.Where(x => x.Estado == true).FirstOrDefault();
+            if (eleccionActiva == null)
+            {
+                ViewBag.ErrorValidarId = "No existe ninguna elección activa.";
+                
+            }
             return View();
         }
 
-        /*[HttpPost]
-        public IActionResult ValidadorCedula(CiudadanosViewModel ciudadanosViewModel)
+        [HttpPost]
+        public async Task<IActionResult> ValidadorCedula(string id)
         {
-            if (ciudadanosViewModel.Id)
+
+            var ciudadano = await _context.Ciudadanos.FindAsync(id);
+
+            if (ciudadano == null)
             {
-                return ("Usted ya ha votado en las elecciones vigentes!");
+
+                ViewBag.ErrorValidarId = "Esta Cédula es invalida o no se encuentra activa.";
+                return View(ciudadano);
+
             }
-            else if (ciudadanosViewModel.Id)
+            var eleccionActiva = _context.Elecciones.Where(x=> x.Estado == true).FirstOrDefault();
+            if (eleccionActiva == null)
             {
-                return ("No existen procesos electorales activos en este momento.");
+                ViewBag.ErrorValidarId = "No existe ninguna elección activa.";
+                return View(ciudadano);
             }
-            else if (ciudadanosViewModel.Id)
+            bool votos =  _context.VotosElecciones.Any(x=> x.CiudadanoId == ciudadano.Id && x.EleccionId == eleccionActiva.Id);
+            if (votos)
             {
-                return ("Este número de cédula se encuentra en estado inactivo!");
+                ViewBag.ErrorValidarId = "Usted ya ha votado en las elecciones vigentes.";
+                return View(ciudadano);
             }
-            else
-            {
-                return View("MenuCiudadano");
-            }
-        }*/
+
+            HttpContext.Session.SetString(VotoKeys.KeyCiudadanoId,ciudadano.Id);
+            HttpContext.Session.SetInt32(VotoKeys.KeyEleccionId, eleccionActiva.Id);
+            HttpContext.Session.SetString(VotoKeys.KeyVotos, JsonConvert.SerializeObject(new List<VotosElecciones>()));
+            
+            return RedirectToAction("SelectPuestoElectivo","VotosElecciones");
+           
+
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

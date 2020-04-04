@@ -1,8 +1,13 @@
-﻿@model SistemaVotacionAutomatizada.DTO.CiudadanosDTO
+﻿@model SistemaVotacionAutomatizada.Models.Ciudadanos
 
-<h1>Validador de Cédulas</h1>
+<h1>Ingrese su documento de identidad</h1>
 
-<form class="form-inline">
+@if (ViewBag.ErrorValidarId != null)
+{
+    <div class="alert alert-danger"><strong>@ViewBag.ErrorValidarId</strong></div>
+}
+
+<form asp-action="ValidadorCedula"  class="form-inline">
     <div class="form-group mx-sm-3 mb-2">
         <label asp-for="Id" for="Cedula" class="sr-only">Cédula</label>
         <input asp-for="Id" type="text" class="form-control" id="Cedula" placeholder="Ingresar Cédula">

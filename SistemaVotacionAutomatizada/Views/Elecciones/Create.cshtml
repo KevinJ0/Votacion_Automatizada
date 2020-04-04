@@ -18,11 +18,7 @@
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
 
-            <div class="custom-control custom-switch">
-                <input asp-for="Estado" type="checkbox" class="custom-control-input">
-                <label asp-for="Estado" class="custom-control-label"></label>
-                <span asp-validation-for="Estado" class="text-danger"></span>
-            </div>
+            <input type="hidden"  asp-for="Estado" value="true" />
 
 
             <div class='form-group date'>
