@@ -15,7 +15,7 @@ using SistemaVotacionAutomatizada.Models;
 
 namespace SistemaVotacionAutomatizada.Controllers
 {
-    //[Authorize]
+    [Authorize]
 
     public class CandidatosController : Controller
     {

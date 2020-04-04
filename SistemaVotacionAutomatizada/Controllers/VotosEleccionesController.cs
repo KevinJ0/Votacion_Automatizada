@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -20,20 +22,22 @@ namespace SistemaVotacionAutomatizada.Controllers
 
         public VotosEleccionesController(ApplicationDbContext context, IEmailSender emailSender)
         {
-            _context = context;
-            _emailSender = emailSender;
+            this._context = context;
+            this._emailSender = emailSender;
         }
 
+        [Authorize]
         // GET: VotosElecciones
         public async Task<IActionResult> Index()
         {
-            var message = new Message(new String[] { "kevinjooo59@gmail.com" }, "Titulo", "Estoy probando");
-            await _emailSender.SendEmailAsync(message);
+            // var message = new Message(new String[] { "kevinjooo59@gmail.com" }, "Titulo", "Estoy probando");
+            //  await _emailSender.SendEmailAsync(message); esto no sirve!
+
 
             var applicationDbContext = _context.VotosElecciones.Include(v => v.Candidato).Include(v => v.Ciudadano).Include(v => v.Eleccion);
             return View(await applicationDbContext.ToListAsync());
         }
-
+        [Authorize]
         // GET: VotosElecciones/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -54,7 +58,7 @@ namespace SistemaVotacionAutomatizada.Controllers
 
             return View(votosElecciones);
         }
-
+        [Authorize]
         // GET: VotosElecciones/Create
         public IActionResult Create()
         {
@@ -68,6 +72,7 @@ namespace SistemaVotacionAutomatizada.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,EleccionId,CandidatoId,CiudadanoId")] VotosElecciones votosElecciones)
         {
@@ -98,7 +103,7 @@ namespace SistemaVotacionAutomatizada.Controllers
             ViewData["EleccionId"] = new SelectList(_context.Elecciones, "Id", "Nombre", votosElecciones.EleccionId);
             return View(votosElecciones);
         }
-
+        [Authorize]
         // GET: VotosElecciones/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -122,6 +127,7 @@ namespace SistemaVotacionAutomatizada.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,EleccionId,CandidatoId,CiudadanoId")] VotosElecciones votosElecciones)
         {
@@ -155,7 +161,7 @@ namespace SistemaVotacionAutomatizada.Controllers
             ViewData["EleccionId"] = new SelectList(_context.Elecciones, "Id", "Nombre", votosElecciones.EleccionId);
             return View(votosElecciones);
         }
-
+                [Authorize]
         // GET: VotosElecciones/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -179,6 +185,7 @@ namespace SistemaVotacionAutomatizada.Controllers
 
         // POST: VotosElecciones/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -349,13 +356,61 @@ namespace SistemaVotacionAutomatizada.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> finalizarVotacion()
         {
+
+            string ciudadanoId = HttpContext.Session.GetString(VotoKeys.KeyCiudadanoId);
+            int? eleccionId = HttpContext.Session.GetInt32(VotoKeys.KeyEleccionId);
+
+            Elecciones eleccion = _context.Elecciones.Find(eleccionId);
+            Ciudadanos ciudadano = _context.Ciudadanos.Find(ciudadanoId);
+
             List<VotosElecciones> VotosJson = VotosJson = new List<VotosElecciones>(); ;
             var str = HttpContext.Session.GetString(VotoKeys.KeyVotos);
             // esto indica si existe alguna lista de votos creada
             if (str != null) VotosJson = JsonConvert.DeserializeObject<List<VotosElecciones>>(str);
 
-            await _context.AddRangeAsync(VotosJson.Where(x=> x.CandidatoId != null).Distinct());
+         
+
+            IEnumerable<VotosElecciones> Votos = VotosJson.Where(x => x.CandidatoId != null).Distinct();
+            if (Votos.Count() <= 0)
+            {
+                Votos.Append(new VotosElecciones { CandidatoId =  null, CiudadanoId = ciudadanoId, EleccionId = eleccionId});
+                await _context.AddRangeAsync(Votos);
+            }
+            else { 
+            
+            await _context.AddRangeAsync(Votos);
+
+            }
+          
+
             await _context.SaveChangesAsync();
+
+            string content = "<h5>Aqui estan la lista de candidatos por la cual votaste: </h5><br><br>";
+            foreach (var item in Votos)
+            {
+                Candidatos candidato = _context.Candidatos.Find(item.CandidatoId);
+                String puestoElectivo = _context.PuestoElectivos.Find(candidato.PuestoElectivosId).Nombre;
+                String partido = _context.Partidos.Find(candidato.PartidoId).Nombre;
+                content = content + "<br/>" + "Puesto electivo: " + puestoElectivo + "<br/>Candidato: " + candidato.Nombre + " " + candidato.Apellido
+                    + "<br/>Partido: " + partido + "<hr>";
+            }
+            string titulo = "Elecciones " + eleccion.Nombre.Trim() +" "+ eleccion.Fecha.GetDateTimeFormats('d')[0];
+
+            // enviamos el correo
+            string EmailOrigen = "itlaprueba4@gmail.com";
+            string EmailDetino = ciudadano.Email.Trim();
+            string contrasena = "Itlaprueba1!";
+            MailMessage oMailMessage = new MailMessage(EmailOrigen, EmailDetino, titulo, content);
+            oMailMessage.IsBodyHtml = true;
+
+            SmtpClient oSmtpClient = new SmtpClient("smtp.gmail.com");
+            oSmtpClient.EnableSsl = true;
+            oSmtpClient.UseDefaultCredentials = false;
+            oSmtpClient.Port = 587;
+            oSmtpClient.Credentials = new System.Net.NetworkCredential(EmailOrigen, contrasena);
+            oSmtpClient.Send(oMailMessage);
+            oSmtpClient.Dispose();
+
             HttpContext.Session.Clear();
             return RedirectToAction("ValidadorCedula", "Home");
 
