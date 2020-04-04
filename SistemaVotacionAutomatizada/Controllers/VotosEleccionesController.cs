@@ -221,6 +221,7 @@ namespace SistemaVotacionAutomatizada.Controllers
                    .Where(x => x.Estado == true)
                    .Where(a => _context.Candidatos
                    .Any(a1 => a1.PuestoElectivosId == a.Id && a1.Estado == true))
+                   .Where(x=> x.Candidatos.Any(c=> c.Partido.Estado == true))
                    .Where(a => !PuestoElectivoIdJson.Contains(a.Id))
                    .ToList();
 
@@ -237,7 +238,8 @@ namespace SistemaVotacionAutomatizada.Controllers
                 .Where(x => x.Estado == true)
                 .Where(a => _context.Candidatos
                 .Any(a1 => a1.PuestoElectivosId == a.Id && a1.Estado == true))
-                .ToListAsync();
+                .Where(x => x.Candidatos.Any(c => c.Partido.Estado == true))
+               .ToListAsync();
 
 
             return View(puestoElect);
@@ -260,8 +262,8 @@ namespace SistemaVotacionAutomatizada.Controllers
 
             var partidos = await _context.Candidatos
             .Where(x => x.PuestoElectivosId == puestoId && x.Estado == true)
-            .Select(x => x.Partido)
-            .Where(x => x.Estado == true)
+            .Select(x => x.Partido).Where(p => p.Estado == true)
+
             .ToListAsync();
 
             int CantCandidatosActivos = _context.Candidatos
