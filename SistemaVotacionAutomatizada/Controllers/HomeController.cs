@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using SistemaVotacionAutomatizada.Helpers;
 using Newtonsoft.Json;
+using Mantenimiento.DTO;
 
 namespace SistemaVotacionAutomatizada.Controllers
 {
@@ -27,8 +28,28 @@ namespace SistemaVotacionAutomatizada.Controllers
         }
       
       
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+
+            //crear user por defecto
+            if (!_context.Users.Any())
+            {
+                RegisterDTO dto = new RegisterDTO
+                {
+                    UserName = "Jose",
+                    Email = "Jose@hotmail.com",
+                    Password = "Itlaprueba1!"
+                };
+
+                var user = new IdentityUser
+                {
+                    UserName = dto.UserName,
+                    Email = dto.Email,
+                };
+
+                var result = await userManager.CreateAsync(user, dto.Password);
+
+            }
             if (signInManager.IsSignedIn(User)) return RedirectToAction("MenuAdmin", "Home");
 
             return View();

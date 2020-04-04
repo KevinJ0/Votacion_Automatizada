@@ -18,6 +18,7 @@ using AutoMapper;
 using System.Reflection;
 using SistemaVotacionAutomatizada.DTO;
 using SistemaVotacionAutomatizada.Helpers;
+using Microsoft.AspNet.Identity;
 
 namespace SistemaVotacionAutomatizada
 {
@@ -81,9 +82,12 @@ namespace SistemaVotacionAutomatizada
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=ValidadorCedula}/{id?}");
             });
-            
+
+
+           
+
         }
     }
 }
